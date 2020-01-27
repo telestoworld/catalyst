@@ -51,6 +51,7 @@ export class ServiceImpl implements MetaverseContentService, TimeKeepingService,
 
     getEntitiesByPointers(type: EntityType, pointers: Pointer[]): Promise<Entity[]> {
         return Promise.all(pointers
+            .map((pointer: Pointer) => pointer.toLocaleLowerCase())
             .map((pointer: Pointer) => this.pointerManager.getEntityInPointer(type, pointer)))
             .then((entityIds:(EntityId|undefined)[]) => entityIds.filter(entity => entity !== undefined))
             .then(entityIds => this.getEntitiesByIds(type, entityIds as EntityId[]))
@@ -91,7 +92,8 @@ export class ServiceImpl implements MetaverseContentService, TimeKeepingService,
 
         const ownerAddress = Authenticator.ownerAddress(auditInfo)
         if (auditInfo.originalMetadata && auditInfo.originalMetadata.originalVersion == EntityVersion.V2) {
-            // TODO: Validate that dcl performed the deployment
+            // Validate that Decentraland performed the deployment
+            validation.validateDecentralandAddress(ownerAddress, validationContext)
 
             // Validate that there is no entity with a higher version
             await validation.validateLegacyEntity(entity, auditInfo, (type, pointers) => this.getEntitiesByPointers(type, pointers), (type, id) => this.getAuditInfo(type, id), validationContext)
@@ -179,29 +181,22 @@ export class ServiceImpl implements MetaverseContentService, TimeKeepingService,
         return this.storage.getContent(fileHash);
     }
 
-    async getAuditInfo(type: EntityType, id: EntityId): Promise<AuditInfo> {
-        const auditInfo: AuditInfo | undefined = await this.auditManager.getAuditInfo(id);
-        return this.assertDefined(auditInfo, `Failed to find the audit information for the entity with type ${type} and id ${id}.`)
+    async getAuditInfo(type: EntityType, id: EntityId): Promise<AuditInfo | undefined> {
+        return this.auditManager.getAuditInfo(id);
     }
 
     async isContentAvailable(fileHashes: ContentFileHash[]): Promise<Map<ContentFileHash, boolean>> {
         return this.storage.isContentAvailable(fileHashes)
     }
 
-    private assertDefined<T>(value: T | undefined, errorMessage: string): T {
-        if (!value) {
-            throw new Error(errorMessage)
-        }
-        return value
-    }
-
-    getStatus(): Promise<ServerStatus> {
-        return Promise.resolve({
+    async getStatus(): Promise<ServerStatus> {
+        return {
             name: this.nameKeeper.getServerName(),
             version: CURRENT_CONTENT_VERSION,
             currentTime: Date.now(),
-            lastImmutableTime: this.getLastImmutableTime()
-        })
+            lastImmutableTime: this.getLastImmutableTime(),
+            historySize: await this.historyManager.getHistorySize(),
+        }
     }
 
     async deployEntityFromCluster(files: ContentFile[], entityId: EntityId, auditInfo: AuditInfo, serverName: ServerName): Promise<void> {

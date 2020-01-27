@@ -10,6 +10,8 @@ export class HistoryManagerImpl implements HistoryManager {
     /** This history is sorted from newest to oldest */
     private tempHistory: DeploymentHistory
 
+    private immutableHistorySize: number | undefined
+
     private constructor(private storage: HistoryStorage, tempHistory: DeploymentHistory) {
         this.tempHistory = tempHistory
     }
@@ -37,6 +39,9 @@ export class HistoryManagerImpl implements HistoryManager {
             const nowImmutable: DeploymentHistory = sortFromOldestToNewest(this.tempHistory.splice(index, this.tempHistory.length - index))
             await this.storage.setTempHistory(this.tempHistory)
             await this.storage.appendToImmutableHistory(nowImmutable)
+            if (this.immutableHistorySize) {
+                this.immutableHistorySize = this.immutableHistorySize + nowImmutable.length
+            }
         }
     }
 
@@ -53,6 +58,19 @@ export class HistoryManagerImpl implements HistoryManager {
         return this.filterHistory(allHistory, from, to, serverName)
     }
 
+    /** Returns the size for the entire history */
+    async getHistorySize(): Promise<number> {
+        return (await this.getImmutableHistorySize()) + this.tempHistory.length
+    }
+
+    private async getImmutableHistorySize(): Promise<number> {
+        if (!this.immutableHistorySize) {
+            const immutableHistory = await this.storage.getImmutableHistory()
+            this.immutableHistorySize = immutableHistory.length
+        }
+        return this.immutableHistorySize
+    }
+
     private filterHistory(history: DeploymentHistory, from: Timestamp | undefined, to: Timestamp | undefined, serverName: ServerName | undefined): DeploymentHistory {
         if (from || to || serverName) {
             return history.filter((event: DeploymentEvent) =>
@@ -64,6 +82,7 @@ export class HistoryManagerImpl implements HistoryManager {
         }
     }
 
+    private
     private async getImmutableHistory(): Promise<DeploymentHistory> {
         const immutableHistory = await this.storage.getImmutableHistory()
         return sortFromNewestToOldest(immutableHistory)
