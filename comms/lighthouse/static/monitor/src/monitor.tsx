@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 
 import Viz from "viz.js";
@@ -50,8 +50,52 @@ async function renderLayers(layers) {
 
 renderTopology();
 
+function LayerSelector(props: { layers: string[]; onSelected: (layer: string) => any }) {
+  return (
+    <div>
+      <label>
+        Select a layer
+        <select onChange={ev => props.onSelected(ev.target.value)}>
+          {props.layers.map(it => (
+            <option value={it}>it</option>
+          ))}
+        </select>
+      </label>
+    </div>
+  );
+}
+
+function LayerTopologyViewer(props: { layer: string }) {
+  const [topology, setTopology] = useState<string | undefined>(undefined);
+  useEffect(() => {
+    (async () => {
+      const layersResponse = await fetch("/layers");
+      const layersList = await layersResponse.json();
+
+      setLayers(layersList);
+    })();
+  }, []);
+}
+
 function App() {
-  return <p>react test</p>;
+  const [layers, setLayers] = useState<string[]>([]);
+  const [currentLayer, setCurrentLayer] = useState("");
+
+  useEffect(() => {
+    (async () => {
+      const layersResponse = await fetch("/layers");
+      const layersList = await layersResponse.json();
+
+      setLayers(layersList);
+    })();
+  }, []);
+
+  return (
+    <div>
+      <LayerSelector layers={layers} onSelected={setCurrentLayer} />
+      {currentLayer && <LayerTopologyViewer layer={currentLayer} />}
+    </div>
+  );
 }
 
 export default function renderApp() {
