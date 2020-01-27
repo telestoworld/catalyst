@@ -107,7 +107,7 @@ export function configureRoutes(app: express.Express, services: Services, option
       res.send(`
       strict digraph graphName {
         concentrate=true
-        ${topologyInfo.map(it => `"${it.peerId}"[label="${it.peerId}\\nconns:${it.connectedPeerIds?.length ?? 0}"];`).join("\n")}
+        ${topologyInfo.map(it => `"${it.peerId}"[label="${it.userId}\\n${it.peerId}\\nconns:${it.connectedPeerIds?.length ?? 0}"];`).join("\n")}
         ${topologyInfo.map(it => (it.connectedPeerIds?.length ? it.connectedPeerIds.map(connected => `"${it.peerId}"->"${connected}";`).join("\n") : `"${it.peerId}";`)).join("\n")}
       }`);
     } else {

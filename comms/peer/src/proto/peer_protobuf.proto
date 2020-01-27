@@ -31,8 +31,8 @@ message PongData {
 message Packet {
   uint32 sequenceId = 1;
   uint32 instanceId = 2;
-  uint64 timestamp = 3;
-  string src = 4;
+  double timestamp = 3;
+  double src = 4;
   string subtype = 5;
   //If negative, it means it is not set.
   int32 discardOlderThan = 6;
@@ -41,7 +41,7 @@ message Packet {
   int32 expireTime = 7;
   uint32 hops = 8;
   uint32 ttl = 9;
-  repeated string receivedBy = 10;
+  repeated double receivedBy = 10;
   oneof data {
     MessageData messageData = 11;
     PingData pingData = 12;

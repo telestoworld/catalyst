@@ -39,7 +39,7 @@ export class PeersService implements IPeersService {
         client.send({
           type,
           src: "__lighthouse_notification__",
-          dst: $.userId,
+          dst: $.peerId,
           payload
         });
       }

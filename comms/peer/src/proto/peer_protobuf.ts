@@ -1,6 +1,5 @@
-import * as Long from 'long';
-import { Writer, Reader } from 'protobufjs/minimal';
 
+import { Writer, Reader } from 'protobufjs/minimal';
 
 export enum PacketType {
   UKNOWN_PACKET_TYPE = 0,
@@ -34,14 +33,14 @@ export interface Packet {
   sequenceId: number;
   instanceId: number;
   timestamp: number;
-  src: string;
+  src: number;
   subtype: string;
   discardOlderThan: number;
   optimistic: boolean;
   expireTime: number;
   hops: number;
   ttl: number;
-  receivedBy: string[];
+  receivedBy: number[];
   messageData: MessageData | undefined;
   pingData: PingData | undefined;
   pongData: PongData | undefined;
@@ -66,22 +65,15 @@ const basePacket: object = {
   sequenceId: 0,
   instanceId: 0,
   timestamp: 0,
-  src: "",
+  src: 0,
   subtype: "",
   discardOlderThan: 0,
   optimistic: false,
   expireTime: 0,
   hops: 0,
   ttl: 0,
-  receivedBy: "",
+  receivedBy: 0,
 };
-
-function longToNumber(long: Long) {
-  if (long.gt(Number.MAX_SAFE_INTEGER)) {
-    throw new Error("Value is larger than Number.MAX_SAFE_INTEGER");
-  }
-  return long.toNumber();
-}
 
 export namespace PacketType {
   export function fromJSON(object: any): PacketType {
@@ -342,17 +334,19 @@ export const Packet = {
   encode(message: Packet, writer: Writer = Writer.create()): Writer {
     writer.uint32(8).uint32(message.sequenceId);
     writer.uint32(16).uint32(message.instanceId);
-    writer.uint32(24).uint64(message.timestamp);
-    writer.uint32(34).string(message.src);
+    writer.uint32(25).double(message.timestamp);
+    writer.uint32(33).double(message.src);
     writer.uint32(42).string(message.subtype);
     writer.uint32(48).int32(message.discardOlderThan);
     writer.uint32(112).bool(message.optimistic);
     writer.uint32(56).int32(message.expireTime);
     writer.uint32(64).uint32(message.hops);
     writer.uint32(72).uint32(message.ttl);
+    writer.uint32(82).fork();
     for (const v of message.receivedBy) {
-      writer.uint32(82).string(v!);
+      writer.double(v);
     }
+    writer.ldelim();
     if (message.messageData !== undefined && message.messageData !== undefined) {
       MessageData.encode(message.messageData, writer.uint32(90).fork()).ldelim();
     }
@@ -378,10 +372,10 @@ export const Packet = {
           message.instanceId = reader.uint32();
           break;
         case 3:
-          message.timestamp = longToNumber(reader.uint64() as Long);
+          message.timestamp = reader.double();
           break;
         case 4:
-          message.src = reader.string();
+          message.src = reader.double();
           break;
         case 5:
           message.subtype = reader.string();
@@ -402,7 +396,14 @@ export const Packet = {
           message.ttl = reader.uint32();
           break;
         case 10:
-          message.receivedBy.push(reader.string());
+          if ((tag & 7) === 2) {
+            const end2 = reader.uint32() + reader.pos;
+            while (reader.pos < end2) {
+              message.receivedBy.push(reader.double());
+            }
+          } else {
+            message.receivedBy.push(reader.double());
+          }
           break;
         case 11:
           message.messageData = MessageData.decode(reader, reader.uint32());
@@ -439,9 +440,9 @@ export const Packet = {
       message.timestamp = 0;
     }
     if (object.src !== undefined && object.src !== null) {
-      message.src = String(object.src);
+      message.src = Number(object.src);
     } else {
-      message.src = "";
+      message.src = 0;
     }
     if (object.subtype !== undefined && object.subtype !== null) {
       message.subtype = String(object.subtype);
@@ -475,7 +476,7 @@ export const Packet = {
     }
     if (object.receivedBy !== undefined && object.receivedBy !== null) {
       for (const e of object.receivedBy) {
-        message.receivedBy.push(String(e));
+        message.receivedBy.push(Number(e));
       }
     }
     if (object.messageData !== undefined && object.messageData !== null) {
@@ -516,7 +517,7 @@ export const Packet = {
     if (object.src !== undefined && object.src !== null) {
       message.src = object.src;
     } else {
-      message.src = "";
+      message.src = 0;
     }
     if (object.subtype !== undefined && object.subtype !== null) {
       message.subtype = object.subtype;
@@ -575,7 +576,7 @@ export const Packet = {
     obj.sequenceId = message.sequenceId || 0;
     obj.instanceId = message.instanceId || 0;
     obj.timestamp = message.timestamp || 0;
-    obj.src = message.src || "";
+    obj.src = message.src || 0;
     obj.subtype = message.subtype || "";
     obj.discardOlderThan = message.discardOlderThan || 0;
     obj.optimistic = message.optimistic || false;
@@ -583,7 +584,7 @@ export const Packet = {
     obj.hops = message.hops || 0;
     obj.ttl = message.ttl || 0;
     if (message.receivedBy) {
-      obj.receivedBy = message.receivedBy.map(e => e || "");
+      obj.receivedBy = message.receivedBy.map(e => e || 0);
     } else {
       obj.receivedBy = [];
     }
