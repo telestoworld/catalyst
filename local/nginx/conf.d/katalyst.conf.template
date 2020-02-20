@@ -12,10 +12,6 @@ upstream lambdas {
     server lambdas:7070;
 }
 
-upstream metrics {
-    server grafana:3000;
-}
-
 server {
     listen 80;
     server_name $katalyst_host;
@@ -61,8 +57,13 @@ server {
         proxy_pass_request_headers  on;
     }
 
-    location  ~ ^/metrics(.*)$ {
-        proxy_pass http://metrics$1$is_args$args;
+    location  ~ ^/comms_metrics(.*)$ {
+        proxy_pass http://comms-server:9090/metrics;
+        proxy_pass_request_headers  on;
+    }
+
+    location  ~ ^/content_metrics(.*)$ {
+        proxy_pass http://content-server:9090/metrics;
         proxy_pass_request_headers  on;
     }
 
