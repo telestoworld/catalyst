@@ -48,16 +48,50 @@ export class TheGraphClient {
     return this.paginatableQuery(query, { owner: owner.toLowerCase() })
   }
 
-  public findWearablesByFilters(filters: WearablesFilters, pagination: Pagination): Promise<WearableId[]> {
+  public async findWearablesByFilters(
+    filters: WearablesFilters,
+    pagination: Pagination
+  ): Promise<{ items: { urn: string; cursor: string }[]; pageInfo: { endCursor: string; hasNextPage: boolean } }> {
+    if (this.invalidFilters(filters)) {
+      throw new Error('There must be at least one filter to get all wearables.')
+    }
+
     const subgraphQuery = this.buildFilterQuery(filters)
-    const query: Query<{ items: { urn: string }[] }, WearableId[]> = {
+    const query: Query<{ items: { urn: WearableId }[] }, { urn: WearableId; cursor: string }[]> = {
       description: 'fetch wearables by filters',
       subgraph: 'collectionsSubgraph',
       query: subgraphQuery,
-      mapper: (response) => response.items.map(({ urn }) => urn),
+      mapper: (response) => response.items.map(({ urn: urn }) => ({ urn, cursor: this.toCursor(urn) })),
       default: []
     }
-    return this.runQuery(query, { ...filters, first: pagination.limit, skip: pagination.offset })
+    const allWearablesWithMore = await this.runQuery(query, {
+      ...filters,
+      first: pagination.limit + 1,
+      skip: pagination.offset
+    })
+    const allWearables = allWearablesWithMore.slice(0, pagination.limit)
+    return {
+      items: allWearables,
+      pageInfo: {
+        endCursor: allWearables.slice(-1)[0].cursor,
+        hasNextPage: allWearablesWithMore.length > allWearables.length
+      }
+    }
+  }
+
+  private toCursor(urn: WearableId): string {
+    return Buffer.from(urn, 'binary').toString('base64')
+  }
+
+  // private toUrn(cursor: string): WearableId {
+  //   return Buffer.from(cursor, 'base64').toString('binary')
+  // }
+
+  private invalidFilters(filters: WearablesFilters): boolean {
+    const noCollectionId: boolean = filters.collectionIds === undefined || filters.collectionIds === []
+    const noWearablesId: boolean = filters.wearableIds === undefined || filters.wearableIds === []
+    const noTextSearch: boolean = filters.textSearch === undefined || filters.textSearch === ''
+    return noCollectionId && noWearablesId && noTextSearch
   }
 
   private buildFilterQuery(filters: WearablesFilters): string {
