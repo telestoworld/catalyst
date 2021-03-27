@@ -1,6 +1,6 @@
-import { parseUrn } from '@dcl/urn-resolver'
 import { SmartContentClient } from '@katalyst/lambdas/utils/SmartContentClient'
-import { Entity } from 'dcl-catalyst-commons'
+import { parseUrn } from '@tcl/urn-resolver'
+import { Entity } from 'tcl-catalyst-commons'
 import {
   I18N,
   Wearable,
@@ -15,7 +15,7 @@ import {
  *
  */
 export async function translateWearablesIdFormat(wearableId: WearableId): Promise<WearableId | undefined> {
-  if (!wearableId.startsWith('dcl://')) {
+  if (!wearableId.startsWith('tcl://')) {
     return wearableId
   }
   const parsed = await parseUrn(wearableId)

@@ -1,5 +1,5 @@
-import { DAOContractClient } from 'decentraland-katalyst-commons/DAOClient'
-import { ServerMetadata } from 'decentraland-katalyst-commons/ServerMetadata'
+import { DAOContractClient } from 'telestoworld-katalyst-commons/DAOClient'
+import { ServerMetadata } from 'telestoworld-katalyst-commons/ServerMetadata'
 import { TimeRefreshedDataHolder } from '../../utils/TimeRefreshedDataHolder'
 import { DAOListClient } from './DAOListsClient'
 

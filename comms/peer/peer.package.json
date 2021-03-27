@@ -1,5 +1,5 @@
 {
-  "name": "decentraland-katalyst-peer",
+  "name": "telestoworld-katalyst-peer",
   "description": "Katalyst peer library",
   "main": "bundle.js",
   "types": "src/index.d.ts",

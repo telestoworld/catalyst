@@ -1,7 +1,7 @@
 import { SystemPropertiesManager, SystemProperty } from '@katalyst/content/service/system-properties/SystemProperties'
 import { Repository, RepositoryTask } from '@katalyst/content/storage/Repository'
-import { ContentFileHash, EntityType, Hashing, Timestamp } from 'dcl-catalyst-commons'
 import log4js from 'log4js'
+import { ContentFileHash, EntityType, Hashing, Timestamp } from 'tcl-catalyst-commons'
 import { Entity } from '../Entity'
 import { MetaverseContentService } from '../Service'
 
@@ -30,7 +30,7 @@ export class SnapshotManager {
         if (
           !snapshot ||
           (await this.deploymentsSince(entityType, snapshot.lastIncludedDeploymentTimestamp, transaction)) >=
-            typeFrequency
+          typeFrequency
         ) {
           await this.generateSnapshot(entityType, transaction)
         }

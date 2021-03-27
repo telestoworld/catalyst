@@ -1,8 +1,8 @@
 import { asArray } from '@katalyst/lambdas/utils/ControllerUtils'
-import { ContentFileHash, Entity, EntityType } from 'dcl-catalyst-commons'
-import { EthAddress } from 'dcl-crypto'
 import { Request, Response } from 'express'
 import log4js from 'log4js'
+import { ContentFileHash, Entity, EntityType } from 'tcl-catalyst-commons'
+import { EthAddress } from 'tcl-crypto'
 import { SmartContentClient } from '../../../utils/SmartContentClient'
 import { WearableId } from '../../collections/types'
 import { isBaseAvatar, translateWearablesIdFormat } from '../../collections/Utils'
@@ -160,7 +160,7 @@ export async function fetchProfilesForSnapshots(
  */
 function fixWearableId(wearableIds: WearableId[]): WearableId[] {
   const fixId = (wearableId: WearableId) =>
-    wearableId === 'dcl://base-avatars/Moccasin' ? 'dcl://base-avatars/SchoolShoes' : wearableId
+    wearableId === 'tcl://base-avatars/Moccasin' ? 'tcl://base-avatars/SchoolShoes' : wearableId
   return wearableIds.map(fixId)
 }
 /**

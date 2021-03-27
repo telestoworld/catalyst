@@ -1,4 +1,4 @@
-import { EntityId, Timestamp } from 'dcl-catalyst-commons'
+import { EntityId, Timestamp } from 'tcl-catalyst-commons'
 import { Deployment } from '../deployments/DeploymentManager'
 import { Entity } from '../Entity'
 

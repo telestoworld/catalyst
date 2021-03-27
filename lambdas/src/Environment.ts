@@ -12,16 +12,16 @@ import { TheGraphClientFactory } from './utils/TheGraphClientFactory'
 const DEFAULT_SERVER_PORT = 7070
 export const DEFAULT_ETH_NETWORK = 'ropsten'
 export const DEFAULT_ENS_OWNER_PROVIDER_URL_ROPSTEN =
-  'https://api.thegraph.com/subgraphs/name/decentraland/marketplace-ropsten'
-const DEFAULT_ENS_OWNER_PROVIDER_URL_MAINNET = 'https://api.thegraph.com/subgraphs/name/decentraland/marketplace'
+  'https://api.thegraph.com/subgraphs/name/telestoworld/marketplace-ropsten'
+const DEFAULT_ENS_OWNER_PROVIDER_URL_MAINNET = 'https://api.thegraph.com/subgraphs/name/telestoworld/marketplace'
 export const DEFAULT_COLLECTIONS_PROVIDER_URL_ROPSTEN =
-  'https://api.thegraph.com/subgraphs/name/decentraland/collections-ethereum-ropsten'
+  'https://api.thegraph.com/subgraphs/name/telestoworld/collections-ethereum-ropsten'
 export const DEFAULT_COLLECTIONS_PROVIDER_URL_MAINNET =
-  'https://api.thegraph.com/subgraphs/name/decentraland/collections-ethereum-mainnet'
+  'https://api.thegraph.com/subgraphs/name/telestoworld/collections-ethereum-mainnet'
 export const DEFAULT_COLLECTIONS_PROVIDER_URL_MATIC_MUMBAI =
-  'https://api.thegraph.com/subgraphs/name/decentraland/collections-matic-mumbai'
+  'https://api.thegraph.com/subgraphs/name/telestoworld/collections-matic-mumbai'
 export const DEFAULT_COLLECTIONS_PROVIDER_URL_MATIC_MAINNET =
-  'https://api.thegraph.com/subgraphs/name/decentraland/collections-matic-mainnet'
+  'https://api.thegraph.com/subgraphs/name/telestoworld/collections-matic-mainnet'
 
 const DEFAULT_LAMBDAS_STORAGE_LOCATION = 'lambdas-storage'
 

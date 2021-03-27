@@ -65,7 +65,7 @@ In the code, a routine is just a function that has the following type:
 type Routine = (elapsed: number, delta: number, peer: SimulatedPeer) => void;
 ```
 
-It gets executed every "tick" of the client, wich should be around 60 times per second. The `elapsed` parameter is the time since the start of the simulation, and the `delta` parameter is the time that passed since the last tick. With that information, a routine can update 
+It gets executed every "tick" of the client, wich should be around 60 times per second. The `elapsed` parameter is the time since the start of the simulation, and the `delta` parameter is the time that passed since the last tick. With that information, a routine can update
 
 At the time of writing this doc, only one routine was implemented and it just sends position messages every 100 ms, profile messages every 1000 ms, and chat messages every 10000 ms. See the [client/index.ts](client/index.ts) file to see how this routine was implemented.
 
@@ -109,7 +109,7 @@ The clients need a lighthouse to start communicating with each other. Because th
 
 The Test Results Server relays the datapoints it receives to a configured InfluxDB so it can be viewed with a visualizer like Graphana.
 
-Both can be run as docker images: 
+Both can be run as docker images:
 
 `docker run --name influxdb -d -v /var/lib/influxdb:/var/lib/influxdb --restart always -p 8086:8086 -p 8088:8088 influxdb`
 
@@ -193,7 +193,7 @@ The clients can also be run in multiple ways. See below.
 The easiest but less transparent way to run the clients is to use the docker image. You can run them using the following command:
 
 ```bash
- docker run -it --rm -e TEST_ID=... -e RESULTS_SERVER_URL=... -e LIGHTHOUSE_URL=... -e PEERS_COUNT=... 
+ docker run -it --rm -e TEST_ID=... -e RESULTS_SERVER_URL=... -e LIGHTHOUSE_URL=... -e PEERS_COUNT=...
 ```
 
 The downside of the docker image is that it needs to be updated everytime the code changes. See the section [docker image](#docker-image) for more information.
@@ -255,7 +255,7 @@ The results JSON is big but simple. It has the following structure:
   "id": string, // Test id
   "dataPoints": [ // List of dataPoints collected
     {
-      "peerId": string, 
+      "peerId": string,
       "timestamp": number, // Timestamp of the datapoint, when it was received
       "metrics": {
         "sent": number, // Number of packets sent in the last stats window
@@ -325,7 +325,7 @@ The results JSON is big but simple. It has the following structure:
 There is currently a simple and hacky html page to be able to have some insights of the metrics using the JSON. You can find it in [test-results-processing/process-test-response.html](test-results-processing/process-test-response.html). It can be opened directly in Chrome or Firefox and you can use their consoles to inspect the JSON.
 
 ## Pending improvements
-- Move docker image to official DCL repo
+- Move docker image to official tcl repo
 - Easier updates to results server and docker image
 - A way to measure how "busy" are the peers from the CPU and machine resources standpoint. Maybe measure setTimeout latency?
 - Add summarized results and assertions

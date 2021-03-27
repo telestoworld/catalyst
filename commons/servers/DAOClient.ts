@@ -1,4 +1,4 @@
-import { CatalystData, CatalystId, DAOContract } from 'decentraland-katalyst-contracts/DAOContract'
+import { CatalystData, CatalystId, DAOContract } from 'telestoworld-katalyst-contracts/DAOContract'
 import { ServerMetadata } from './ServerMetadata'
 
 export interface DAOClient {

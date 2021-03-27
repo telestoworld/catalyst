@@ -4,7 +4,10 @@ import { retry } from '@katalyst/content/helpers/RetryHelper'
 import { Entity } from '@katalyst/content/service/Entity'
 import { EntityFactory } from '@katalyst/content/service/EntityFactory'
 import { DeploymentResult, MetaverseContentService } from '@katalyst/content/service/Service'
-import { DeploymentBuilder } from 'dcl-catalyst-client'
+import EthCrypto from 'eth-crypto'
+import fs from 'fs'
+import path from 'path'
+import { DeploymentBuilder } from 'tcl-catalyst-client'
 import {
   ContentFileHash,
   Entity as ControllerEntity,
@@ -13,11 +16,8 @@ import {
   EntityVersion,
   Pointer,
   Timestamp
-} from 'dcl-catalyst-commons'
-import { AuthChain, Authenticator, EthAddress } from 'dcl-crypto'
-import EthCrypto from 'eth-crypto'
-import fs from 'fs'
-import path from 'path'
+} from 'tcl-catalyst-commons'
+import { AuthChain, Authenticator, EthAddress } from 'tcl-crypto'
 
 export async function buildDeployDataAfterEntity(
   afterEntity: { timestamp: Timestamp } | { entity: { timestamp: Timestamp } },

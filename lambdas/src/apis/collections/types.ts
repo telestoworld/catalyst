@@ -1,4 +1,4 @@
-import { EthAddress } from 'dcl-crypto'
+import { EthAddress } from 'tcl-crypto'
 
 export type WearableMetadata = {
   id: WearableId

@@ -1,3 +1,4 @@
+import ms from 'ms'
 import {
   ContentFileHash,
   DeploymentFilters,
@@ -7,9 +8,8 @@ import {
   ENTITY_FILE_NAME,
   Pointer,
   Timestamp
-} from 'dcl-catalyst-commons'
-import { AuthChain, EthAddress } from 'dcl-crypto'
-import ms from 'ms'
+} from 'tcl-catalyst-commons'
+import { AuthChain, EthAddress } from 'tcl-crypto'
 import { httpProviderForNetwork } from '../../../../contracts/utils'
 import { ContentFile } from '../../controller/Controller'
 import { AccessChecker } from '../access/AccessChecker'
@@ -27,7 +27,7 @@ export class Validations {
     private readonly authenticator: ContentAuthenticator,
     private readonly network: string,
     private readonly requestTtlBackwards: number
-  ) {}
+  ) { }
 
   getInstance(): ValidatorInstance {
     return new ValidatorInstance(this.accessChecker, this.authenticator, this.network, this.requestTtlBackwards)
@@ -42,7 +42,7 @@ export class ValidatorInstance {
     private readonly authenticator: ContentAuthenticator,
     private readonly network: string,
     private readonly requestTtlBackwards: number
-  ) {}
+  ) { }
 
   getErrors(): string[] {
     return this.errors
@@ -71,11 +71,11 @@ export class ValidatorInstance {
     }
   }
 
-  /** Validate that the address used was owned by Decentraland */
-  validateDecentralandAddress(address: EthAddress, validationContext: ValidationContext) {
-    if (validationContext.shouldValidate(Validation.DECENTRALAND_ADDRESS)) {
-      if (!this.authenticator.isAddressOwnedByDecentraland(address)) {
-        this.errors.push(`Expected an address owned by decentraland. Instead, we found ${address}`)
+  /** Validate that the address used was owned by telestoworld */
+  validatetelestoworldAddress(address: EthAddress, validationContext: ValidationContext) {
+    if (validationContext.shouldValidate(Validation.telestoworld_ADDRESS)) {
+      if (!this.authenticator.isAddressOwnedBytelestoworld(address)) {
+        this.errors.push(`Expected an address owned by telestoworld. Instead, we found ${address}`)
       }
     }
   }
@@ -118,10 +118,8 @@ export class ValidatorInstance {
       const sizePerPointer = totalSize / pointers.length
       if (sizePerPointer > ValidatorInstance.MAX_UPLOAD_SIZE_PER_POINTER) {
         this.errors.push(
-          `The deployment is too big. The maximum allowed size per pointer is ${
-            ValidatorInstance.MAX_UPLOAD_SIZE_PER_POINTER_MB
-          } MB. You can upload up to ${
-            pointers.length * ValidatorInstance.MAX_UPLOAD_SIZE_PER_POINTER
+          `The deployment is too big. The maximum allowed size per pointer is ${ValidatorInstance.MAX_UPLOAD_SIZE_PER_POINTER_MB
+          } MB. You can upload up to ${pointers.length * ValidatorInstance.MAX_UPLOAD_SIZE_PER_POINTER
           } bytes but you tried to upload ${totalSize}.`
         )
       }

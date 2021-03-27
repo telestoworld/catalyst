@@ -1,4 +1,4 @@
-import { Entity as ControllerEntity, EntityContentItemReference } from 'dcl-catalyst-commons'
+import { Entity as ControllerEntity, EntityContentItemReference } from 'tcl-catalyst-commons'
 import { Deployment } from '../service/deployments/DeploymentManager'
 import { Entity } from '../service/Entity'
 import { EntityField } from './Controller'

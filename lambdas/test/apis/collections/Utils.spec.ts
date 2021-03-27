@@ -1,7 +1,7 @@
 import { WearableMetadata } from '@katalyst/lambdas/apis/collections/types'
 import { translateEntityIntoWearable } from '@katalyst/lambdas/apis/collections/Utils'
 import { SmartContentClient } from '@katalyst/lambdas/utils/SmartContentClient'
-import { Entity, EntityType } from 'dcl-catalyst-commons'
+import { Entity, EntityType } from 'tcl-catalyst-commons'
 import { instance, mock, when } from 'ts-mockito'
 
 const EXTERNAL_URL = 'https://external.com'
@@ -105,7 +105,7 @@ function buildMetadata(): WearableMetadata {
 }
 
 function getClient(): SmartContentClient {
-  const mockedClient = mock(SmartContentClient)
-  when(mockedClient.getExternalContentServerUrl()).thenReturn(EXTERNAL_URL)
-  return instance(mockedClient)
+  const mocketclient = mock(SmartContentClient)
+  when(mocketclient.getExternalContentServerUrl()).thenReturn(EXTERNAL_URL)
+  return instance(mocketclient)
 }

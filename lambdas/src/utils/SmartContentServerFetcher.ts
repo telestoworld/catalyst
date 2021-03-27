@@ -1,5 +1,5 @@
-import { Fetcher, RequestOptions } from 'dcl-catalyst-commons'
 import log4js from 'log4js'
+import { Fetcher, RequestOptions } from 'tcl-catalyst-commons'
 /**
  * This fetcher tries to use the internal docker network to connect lambdas with the content server.
  * If it can't, then it will try to contact it externally
@@ -21,7 +21,7 @@ export class SmartContentServerFetcher extends Fetcher {
         SmartContentServerFetcher.LOGGER.info('Will use the internal content server url')
         this.contentServerUrl = SmartContentServerFetcher.INTERNAL_CONTENT_SERVER_URL
         return this.contentServerUrl
-      } catch {}
+      } catch { }
       SmartContentServerFetcher.LOGGER.info('Will use the external content server url')
       this.contentServerUrl = this.externalContentServerUrl
     }

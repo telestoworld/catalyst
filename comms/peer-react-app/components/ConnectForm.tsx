@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import React, { useState, useEffect } from 'react'
-import { Field, Button } from 'decentraland-ui'
+import { Field, Button } from 'telestoworld-ui'
 
 import { IPeer } from '../../peer/src/types'
 import { PeerToken } from './PeerToken'

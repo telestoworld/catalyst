@@ -4,10 +4,10 @@ import { Deployment } from '@katalyst/content/service/deployments/DeploymentMana
 import { ValidationContext } from '@katalyst/content/service/validations/ValidationContext'
 import { Validations } from '@katalyst/content/service/validations/Validations'
 import { MockedAccessChecker } from '@katalyst/test-helpers/service/access/MockedAccessChecker'
-import { AuditInfo, Entity, EntityType, EntityVersion, Fetcher, Timestamp } from 'dcl-catalyst-commons'
-import { AuthChain, AuthLinkType } from 'dcl-crypto'
 import * as EthCrypto from 'eth-crypto'
 import ms from 'ms'
+import { AuditInfo, Entity, EntityType, EntityVersion, Fetcher, Timestamp } from 'tcl-catalyst-commons'
+import { AuthChain, AuthLinkType } from 'tcl-crypto'
 
 describe('Validations', function () {
   it(`When a non uploaded hash is referenced, it is reported`, () => {
@@ -257,7 +257,7 @@ describe('Validations', function () {
 
   it(`signature test on human readable message`, async () => {
     const message =
-      'Decentraland Login\nEphemeral address: 0x1F19d3EC0BE294f913967364c1D5B416e6A74555\nExpiration: Tue Jan 21 2020 16:34:32 GMT+0000 (Coordinated Universal Time)'
+      'telestoworld Login\nEphemeral address: 0x1F19d3EC0BE294f913967364c1D5B416e6A74555\nExpiration: Tue Jan 21 2020 16:34:32 GMT+0000 (Coordinated Universal Time)'
     const signature =
       '0x49c5d57fc804e6a06f83ee8d499aec293a84328766864d96349db599ef9ebacc072892ec1f3e2777bdc8265b53d8b84edd646bdc711dd5290c18adcc5de4a2831b'
     const expectedSigner = '0x1f19d3ec0be294f913967364c1d5b416e6a74555'
@@ -269,14 +269,14 @@ describe('Validations', function () {
     const expiration = new Date()
     expiration.setMinutes(expiration.getMinutes() + 30)
 
-    const message = `Decentraland Login\nEphemeral address: ${identity.address}\nExpiration: ${expiration}`
+    const message = `telestoworld Login\nEphemeral address: ${identity.address}\nExpiration: ${expiration}`
     const signature = ContentAuthenticator.createSignature(identity, message)
     const expectedSigner = identity.address.toLowerCase()
     validateExpectedAddress(message, signature, expectedSigner)
   })
 
   it(`signature test on human readable message 3`, async () => {
-    const message = 'Decentraland Login\nEphemeral address: ${ephemeralIdentity.address}\nExpiration: ${expiration}'
+    const message = 'telestoworld Login\nEphemeral address: ${ephemeralIdentity.address}\nExpiration: ${expiration}'
     const signature =
       '0x93e6c60fbe79e5a6b94c2f560730eaf1b8eeac4859046ac90d3cff14f9be65aa6d7fad907ce320979d56848d7d7c13cb10295d739eb2a3d99f0e6e9cba56ff7c1b'
     const expectedSigner = '0xe4d3ba99ffdae47c003f1756c01d8e7ee8fef7c9'
@@ -285,14 +285,14 @@ describe('Validations', function () {
 
   it(`signature test on human readable message 4`, async () => {
     const identity = EthCrypto.createIdentity()
-    const message = 'Decentraland Login\nEphemeral'
+    const message = 'telestoworld Login\nEphemeral'
     const signature = ContentAuthenticator.createSignature(identity, message)
     const expectedSigner = identity.address.toLowerCase()
     validateExpectedAddress(message, signature, expectedSigner)
   })
 
   it(`signature test on human readable message 4b`, async () => {
-    const message = 'Decentraland Login\nEphemeral'
+    const message = 'telestoworld Login\nEphemeral'
     const signature =
       '0x4163812d18beaa732edc4c9d106c4824b7efa565b96841e0a3d9c1863112cab627fb1d7ff7c1b3330d7c5021b76852080d349f7dfd26d59afdac21fc378d51a21b'
     const expectedSigner = '0xd5af26a5adfc888843d765da9a5cda6f1416eb9d'
@@ -301,14 +301,14 @@ describe('Validations', function () {
 
   it(`signature test on human readable message 5`, async () => {
     const identity = EthCrypto.createIdentity()
-    const message = 'Decentraland Login Ephemeral'
+    const message = 'telestoworld Login Ephemeral'
     const signature = ContentAuthenticator.createSignature(identity, message)
     const expectedSigner = identity.address.toLowerCase()
     validateExpectedAddress(message, signature, expectedSigner)
   })
 
   it(`signature test on human readable message 5b`, async () => {
-    const message = 'Decentraland Login Ephemeral'
+    const message = 'telestoworld Login Ephemeral'
     const signature =
       '0x29561864c8c058688dc5043e04a1dc234d7cbd9201d26029402c0ca4d86d3a337e200f4136dbf40ada341674c79ece56946720b20bc645dd3cc029ab824680891b'
     const expectedSigner = '0xf37cb6620d0efcfdaf4a166e3ddd75daa4975b39'

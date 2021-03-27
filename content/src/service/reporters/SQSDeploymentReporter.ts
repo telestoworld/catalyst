@@ -1,8 +1,8 @@
 import { AWSError, Credentials } from 'aws-sdk'
 import SQS, { SendMessageRequest } from 'aws-sdk/clients/sqs'
-import { EntityType } from 'dcl-catalyst-commons'
-import { Authenticator, EthAddress } from 'dcl-crypto'
 import log4js from 'log4js'
+import { EntityType } from 'tcl-catalyst-commons'
+import { Authenticator, EthAddress } from 'tcl-crypto'
 import { Entity } from '../Entity'
 import { MetaverseContentService } from '../Service'
 

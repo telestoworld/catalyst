@@ -1,10 +1,10 @@
 import { ContentFile } from '@katalyst/content/controller/Controller'
 import { Bean, EnvironmentConfig } from '@katalyst/content/Environment'
 import { assertPromiseRejectionIs } from '@katalyst/test-helpers/PromiseAssertions'
-import { addModelToFormData } from 'dcl-catalyst-client'
-import { Authenticator } from 'dcl-crypto'
 import FormData from 'form-data'
 import fetch from 'node-fetch'
+import { addModelToFormData } from 'tcl-catalyst-client'
+import { Authenticator } from 'tcl-crypto'
 import { MockedSynchronizationManager } from '../helpers/service/synchronization/MockedSynchronizationManager'
 import { assertResponseIsOkOrThrow } from './E2EAssertions'
 import { loadStandaloneTestEnvironment } from './E2ETestEnvironment'
@@ -20,24 +20,24 @@ describe('End 2 end - Legacy Entities', () => {
     server = await testEnv
       .configServer()
       .withBean(Bean.SYNCHRONIZATION_MANAGER, new MockedSynchronizationManager())
-      .withConfig(EnvironmentConfig.DECENTRALAND_ADDRESS, identity.address)
+      .withConfig(EnvironmentConfig.telestoworld_ADDRESS, identity.address)
       .withConfig(EnvironmentConfig.ALLOW_LEGACY_ENTITIES, true)
       .andBuild()
     await server.start()
   })
 
-  it(`When a non-decentraland address tries to deploy a legacy entity, then an exception is thrown`, async () => {
+  it(`When a non-telestoworld address tries to deploy a legacy entity, then an exception is thrown`, async () => {
     // Prepare entity to deploy
     const { deployData } = await buildDeployData(['0,0', '0,1'], { metadata: 'metadata', identity: createIdentity() })
 
     // Try to deploy the entity
     await assertPromiseRejectionIs(
       () => deployLegacy(server, deployData),
-      `Expected an address owned by decentraland. Instead, we found ${Authenticator.ownerAddress(deployData.authChain)}`
+      `Expected an address owned by telestoworld. Instead, we found ${Authenticator.ownerAddress(deployData.authChain)}`
     )
   })
 
-  it(`When a decentraland address tries to deploy a legacy entity, then it is successful`, async () => {
+  it(`When a telestoworld address tries to deploy a legacy entity, then it is successful`, async () => {
     // Prepare entity to deploy
     const { deployData } = await buildDeployData(['0,0', '0,1'], { metadata: 'metadata', identity })
 

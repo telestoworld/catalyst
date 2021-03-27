@@ -1,6 +1,6 @@
-import { Authenticator, AuthLink, ValidationResult } from 'dcl-crypto'
-import { httpProviderForNetwork } from 'decentraland-katalyst-contracts/utils'
 import { Request, Response } from 'express'
+import { Authenticator, AuthLink, ValidationResult } from 'tcl-crypto'
+import { httpProviderForNetwork } from 'telestoworld-katalyst-contracts/utils'
 
 export async function validateSignature(networkKey: string, req: Request, res: Response) {
   // Method: POST

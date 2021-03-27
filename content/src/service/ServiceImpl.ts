@@ -1,3 +1,4 @@
+import log4js from 'log4js'
 import {
   AuditInfo,
   ContentFileHash,
@@ -11,8 +12,7 @@ import {
   ServerName,
   ServerStatus,
   Timestamp
-} from 'dcl-catalyst-commons'
-import log4js from 'log4js'
+} from 'tcl-catalyst-commons'
 import { ContentFile } from '../controller/Controller'
 import { CURRENT_CONTENT_VERSION } from '../Environment'
 import { ContentItem, fromBuffer, StorageContent } from '../storage/ContentStorage'
@@ -58,7 +58,7 @@ export class ServiceImpl implements MetaverseContentService, ClusterDeploymentsS
     private readonly deploymentManager: DeploymentManager,
     private readonly validations: Validations,
     private readonly repository: Repository
-  ) {}
+  ) { }
 
   async start(): Promise<void> {
     this.historySize = await this.repository.task((task) => task.deployments.getAmountOfDeployments())
@@ -124,8 +124,8 @@ export class ServiceImpl implements MetaverseContentService, ClusterDeploymentsS
     // Calculate the owner address from the auth chain
     const ownerAddress = ContentAuthenticator.ownerAddress(auditInfo.authChain)
 
-    // Validate that Decentraland performed the deployment (only for legacy entities)
-    validation.validateDecentralandAddress(ownerAddress, validationContext)
+    // Validate that telestoworld performed the deployment (only for legacy entities)
+    validation.validatetelestoworldAddress(ownerAddress, validationContext)
 
     // Validate request size
     validation.validateRequestSize(files, entity.pointers, validationContext)
@@ -164,92 +164,92 @@ export class ServiceImpl implements MetaverseContentService, ClusterDeploymentsS
       const response:
         | { auditInfoComplete: AuditInfo; wasEntityDeployed: boolean }
         | InvalidResult = await repository.txIf(async (transaction) => {
-        const isEntityAlreadyDeployed = await this.isEntityAlreadyDeployed(entityId, transaction)
+          const isEntityAlreadyDeployed = await this.isEntityAlreadyDeployed(entityId, transaction)
 
-        // Validate if the entity can be re deployed
-        await validation.validateThatEntityCanBeRedeployed(isEntityAlreadyDeployed, validationContext)
+          // Validate if the entity can be re deployed
+          await validation.validateThatEntityCanBeRedeployed(isEntityAlreadyDeployed, validationContext)
 
-        // Validate that there is no entity with a higher version
-        await validation.validateLegacyEntity(
-          entity,
-          auditInfo,
-          (filters) => this.getDeployments({ filters }, transaction),
-          validationContext
-        )
-
-        // Validate that there are no newer entities on pointers
-        await validation.validateNoNewerEntitiesOnPointers(
-          entity,
-          (entity: Entity) => this.areThereNewerEntitiesOnPointers(entity, transaction),
-          validationContext
-        )
-
-        // Validate that if the entity was already deployed, the status it was left is what we expect
-        await validation.validateThatEntityFailedBefore(
-          entity,
-          (type, id) => this.failedDeploymentsManager.getDeploymentStatus(transaction.failedDeployments, type, id),
-          validationContext
-        )
-
-        if (validation.getErrors().length > 0) {
-          return { errors: validation.getErrors() }
-        }
-
-        const localTimestamp = Date.now()
-
-        const auditInfoComplete: AuditInfo = {
-          ...auditInfo,
-          localTimestamp
-        }
-
-        if (!isEntityAlreadyDeployed) {
-          // IF THIS POINT WAS REACHED, THEN THE DEPLOYMENT WILL BE COMMITTED
-
-          // Calculate overwrites
-          const { overwrote, overwrittenBy } = await this.pointerManager.calculateOverwrites(
-            transaction.pointerHistory,
-            entity
-          )
-
-          // Store the deployment
-          const deploymentId = await this.deploymentManager.saveDeployment(
-            transaction.deployments,
-            transaction.migrationData,
-            transaction.content,
+          // Validate that there is no entity with a higher version
+          await validation.validateLegacyEntity(
             entity,
-            auditInfoComplete,
-            overwrittenBy
+            auditInfo,
+            (filters) => this.getDeployments({ filters }, transaction),
+            validationContext
           )
 
-          // Modify active pointers
-          const result = await this.pointerManager.referenceEntityFromPointers(
-            transaction.lastDeployedPointers,
-            deploymentId,
-            entity
+          // Validate that there are no newer entities on pointers
+          await validation.validateNoNewerEntitiesOnPointers(
+            entity,
+            (entity: Entity) => this.areThereNewerEntitiesOnPointers(entity, transaction),
+            validationContext
           )
 
-          // Save deployment pointer changes
-          await this.deploymentManager.savePointerChanges(transaction.deploymentPointerChanges, deploymentId, result)
+          // Validate that if the entity was already deployed, the status it was left is what we expect
+          await validation.validateThatEntityFailedBefore(
+            entity,
+            (type, id) => this.failedDeploymentsManager.getDeploymentStatus(transaction.failedDeployments, type, id),
+            validationContext
+          )
 
-          // Add to pointer history
-          await this.pointerManager.addToHistory(transaction.pointerHistory, deploymentId, entity)
+          if (validation.getErrors().length > 0) {
+            return { errors: validation.getErrors() }
+          }
 
-          // Set who overwrote who
-          await this.deploymentManager.setEntitiesAsOverwritten(transaction.deployments, overwrote, deploymentId)
+          const localTimestamp = Date.now()
 
-          // Store the entity's content
-          await this.storeEntityContent(hashes, alreadyStoredContent)
-        }
+          const auditInfoComplete: AuditInfo = {
+            ...auditInfo,
+            localTimestamp
+          }
 
-        // Mark deployment as successful (this does nothing it if hadn't failed on the first place)
-        await this.failedDeploymentsManager.reportSuccessfulDeployment(
-          transaction.failedDeployments,
-          entity.type,
-          entity.id
-        )
+          if (!isEntityAlreadyDeployed) {
+            // IF THIS POINT WAS REACHED, THEN THE DEPLOYMENT WILL BE COMMITTED
 
-        return { auditInfoComplete, wasEntityDeployed: !isEntityAlreadyDeployed }
-      })
+            // Calculate overwrites
+            const { overwrote, overwrittenBy } = await this.pointerManager.calculateOverwrites(
+              transaction.pointerHistory,
+              entity
+            )
+
+            // Store the deployment
+            const deploymentId = await this.deploymentManager.saveDeployment(
+              transaction.deployments,
+              transaction.migrationData,
+              transaction.content,
+              entity,
+              auditInfoComplete,
+              overwrittenBy
+            )
+
+            // Modify active pointers
+            const result = await this.pointerManager.referenceEntityFromPointers(
+              transaction.lastDeployedPointers,
+              deploymentId,
+              entity
+            )
+
+            // Save deployment pointer changes
+            await this.deploymentManager.savePointerChanges(transaction.deploymentPointerChanges, deploymentId, result)
+
+            // Add to pointer history
+            await this.pointerManager.addToHistory(transaction.pointerHistory, deploymentId, entity)
+
+            // Set who overwrote who
+            await this.deploymentManager.setEntitiesAsOverwritten(transaction.deployments, overwrote, deploymentId)
+
+            // Store the entity's content
+            await this.storeEntityContent(hashes, alreadyStoredContent)
+          }
+
+          // Mark deployment as successful (this does nothing it if hadn't failed on the first place)
+          await this.failedDeploymentsManager.reportSuccessfulDeployment(
+            transaction.failedDeployments,
+            entity.type,
+            entity.id
+          )
+
+          return { auditInfoComplete, wasEntityDeployed: !isEntityAlreadyDeployed }
+        })
 
       if (!('auditInfoComplete' in response)) {
         return response

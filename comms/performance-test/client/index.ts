@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { Position3D, Quaternion } from 'decentraland-katalyst-utils/Positions'
-import { randomBetween } from 'decentraland-katalyst-utils/util'
 import { Reader } from 'protobufjs'
+import { Position3D, Quaternion } from 'telestoworld-katalyst-utils/Positions'
+import { randomBetween } from 'telestoworld-katalyst-utils/util'
 import { PeerConfig } from '../../peer/src'
 import { PeerMessageTypes } from '../../peer/src/messageTypes'
 import { Peer } from '../../peer/src/Peer'
@@ -89,7 +89,7 @@ function average(numbers: number[]) {
 
 class PeriodicAction {
   private elapsed: number = 0
-  constructor(private period: number, private action: (elapsed, delta, peer) => void) {}
+  constructor(private period: number, private action: (elapsed, delta, peer) => void) { }
 
   update(elapsed: number, delta: number, peer: SimulatedPeer) {
     this.elapsed += delta
@@ -193,9 +193,9 @@ const peerConfig: PeerConfig = {
         urls: 'stun:stun4.l.google.com:19302'
       },
       {
-        urls: 'turn:stun.decentraland.org:3478',
-        credential: 'passworddcl',
-        username: 'usernamedcl'
+        urls: 'turn:stun.telestoworld.org:3478',
+        credential: 'passwordtcl',
+        username: 'usernametcl'
       }
     ]
   },
@@ -278,7 +278,7 @@ async function createPeer() {
   return simulatedPeer
 }
 
-;(async () => {
+; (async () => {
   if (testId) await testStarted()
 
   console.log('Creating ' + numberOfPeers + ' peers')

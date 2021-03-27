@@ -1,4 +1,4 @@
-import { Fetcher, ServerAddress } from 'dcl-catalyst-commons'
+import { Fetcher, ServerAddress } from 'tcl-catalyst-commons'
 
 export class MockedFetcher extends Fetcher {
   private readonly jsonResultByUrl: Map<string, any> = new Map()

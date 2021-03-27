@@ -1,14 +1,14 @@
-import { BlockchainCollectionV2Asset, parseUrn } from '@dcl/urn-resolver'
-import { Fetcher, Pointer } from 'dcl-catalyst-commons'
-import { EthAddress } from 'dcl-crypto'
+import { BlockchainCollectionV2Asset, parseUrn } from '@tcl/urn-resolver'
 import log4js from 'log4js'
+import { Fetcher, Pointer } from 'tcl-catalyst-commons'
+import { EthAddress } from 'tcl-crypto'
 
 export class AccessCheckerForWearables {
   constructor(
     private readonly fetcher: Fetcher,
-    private readonly dclCollectionsAccessUrl: string,
+    private readonly tclCollectionsAccessUrl: string,
     private readonly LOGGER: log4js.Logger
-  ) {}
+  ) { }
 
   public async checkAccess(pointers: Pointer[], ethAddress: EthAddress): Promise<string[]> {
     const errors: string[] = []
@@ -29,7 +29,7 @@ export class AccessCheckerForWearables {
       }
     } else {
       errors.push(
-        `Wearable pointers should be a urn, for example (urn:decentraland:{protocol}:collections-v2:{contract(0x[a-fA-F0-9]+)}:{name}). Invalid pointer: (${pointer})`
+        `Wearable pointers should be a urn, for example (urn:telestoworld:{protocol}:collections-v2:{contract(0x[a-fA-F0-9]+)}:{name}). Invalid pointer: (${pointer})`
       )
     }
     return errors
@@ -41,7 +41,7 @@ export class AccessCheckerForWearables {
       if (parsed?.type === 'blockchain-collection-v2') {
         return parsed as BlockchainCollectionV2Asset
       }
-    } catch {}
+    } catch { }
     return null
   }
 
@@ -76,7 +76,7 @@ export class AccessCheckerForWearables {
 
     try {
       const wearableCollectionsAndItems = await this.fetcher.queryGraph<WearableCollectionsAndItems>(
-        this.dclCollectionsAccessUrl,
+        this.tclCollectionsAccessUrl,
         query,
         { collection: collection, itemId: parseInt(itemId, 10) }
       )

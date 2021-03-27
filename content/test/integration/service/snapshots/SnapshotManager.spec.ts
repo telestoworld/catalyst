@@ -2,7 +2,7 @@ import { Bean, EnvironmentBuilder, EnvironmentConfig } from '@katalyst/content/E
 import { MetaverseContentService } from '@katalyst/content/service/Service'
 import { SnapshotManager, SnapshotMetadata } from '@katalyst/content/service/snapshots/SnapshotManager'
 import { NoOpValidations } from '@katalyst/test-helpers/service/validations/NoOpValidations'
-import { EntityId, EntityType, Pointer } from 'dcl-catalyst-commons'
+import { EntityId, EntityType, Pointer } from 'tcl-catalyst-commons'
 import { assertResultIsSuccessfulWithTimestamp } from '../../E2EAssertions'
 import { loadStandaloneTestEnvironment } from '../../E2ETestEnvironment'
 import { buildDeployData, buildDeployDataAfterEntity, deployEntitiesCombo, EntityCombo } from '../../E2ETestUtils'
@@ -19,7 +19,7 @@ describe('Integration - Snapshot Manager', () => {
   beforeAll(async () => {
     E1 = await buildDeployData([P1], { type: EntityType.SCENE })
     E2 = await buildDeployDataAfterEntity(E1, [P2], { type: EntityType.SCENE })
-    ;(E3 = await buildDeployDataAfterEntity(E2, [P1])), { type: EntityType.SCENE }
+      ; (E3 = await buildDeployDataAfterEntity(E2, [P1])), { type: EntityType.SCENE }
   })
 
   beforeEach(async () => {

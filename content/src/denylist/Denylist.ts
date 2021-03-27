@@ -1,6 +1,6 @@
-import { Timestamp } from 'dcl-catalyst-commons'
-import { AuthChain, EthAddress } from 'dcl-crypto'
-import { validateSignature } from 'decentraland-katalyst-commons/signatures'
+import { Timestamp } from 'tcl-catalyst-commons'
+import { AuthChain, EthAddress } from 'tcl-crypto'
+import { validateSignature } from 'telestoworld-katalyst-commons/signatures'
 import { ContentAuthenticator } from '../service/auth/Authenticator'
 import { ContentCluster } from '../service/synchronization/ContentCluster'
 import { DenylistRepository } from '../storage/repositories/DenylistRepository'
@@ -13,7 +13,7 @@ export class Denylist {
     private readonly authenticator: ContentAuthenticator,
     private readonly cluster: ContentCluster,
     private readonly network: string
-  ) {}
+  ) { }
 
   static buildBlockMessageToSign(target: DenylistTarget, timestamp: Timestamp) {
     return this.internalBuildMessageToSign(DenylistAction.ADDITION, target, timestamp)
@@ -124,7 +124,7 @@ export class Denylist {
             status: DenylistSignatureValidationStatus.ERROR,
             message: `Failed to authenticate the blocker. Error was: ${errorMessage}`
           }),
-        (signer) => !!signer && (nodeOwner === signer || this.authenticator.isAddressOwnedByDecentraland(signer)),
+        (signer) => !!signer && (nodeOwner === signer || this.authenticator.isAddressOwnedBytelestoworld(signer)),
         this.network
       )
     })

@@ -8,8 +8,8 @@ import { EnsOwnership } from '@katalyst/lambdas/apis/profiles/EnsOwnership'
 import { NFTOwnership } from '@katalyst/lambdas/apis/profiles/NFTOwnership'
 import { WearablesOwnership } from '@katalyst/lambdas/apis/profiles/WearablesOwnership'
 import { SmartContentClient } from '@katalyst/lambdas/utils/SmartContentClient'
-import { Entity, EntityType } from 'dcl-catalyst-commons'
-import { EthAddress } from 'dcl-crypto'
+import { Entity, EntityType } from 'tcl-catalyst-commons'
+import { EthAddress } from 'tcl-crypto'
 import { anything, instance, mock, when } from 'ts-mockito'
 
 const EXTERNAL_URL = 'https://content-url.com'
@@ -172,10 +172,10 @@ function profileWith(
 }
 
 function contentServerThatReturns(profile?: Entity): SmartContentClient {
-  const mockedClient = mock(SmartContentClient)
-  when(mockedClient.fetchEntitiesByPointers(anything(), anything())).thenResolve(profile ? [profile] : [])
-  when(mockedClient.getExternalContentServerUrl()).thenReturn(EXTERNAL_URL)
-  return instance(mockedClient)
+  const mocketclient = mock(SmartContentClient)
+  when(mocketclient.fetchEntitiesByPointers(anything(), anything())).thenResolve(profile ? [profile] : [])
+  when(mocketclient.getExternalContentServerUrl()).thenReturn(EXTERNAL_URL)
+  return instance(mocketclient)
 }
 
 function noNFTs<T extends NFTOwnership>(clazz: new (...args: any[]) => T): T {

@@ -5,7 +5,7 @@ import { Bean, EnvironmentConfig } from '@katalyst/content/Environment'
 import { assertPromiseIsRejected } from '@katalyst/test-helpers/PromiseAssertions'
 import { MockedContentCluster } from '@katalyst/test-helpers/service/synchronization/MockedContentCluster'
 import { MockedSynchronizationManager } from '@katalyst/test-helpers/service/synchronization/MockedSynchronizationManager'
-import { Entity as ControllerEntity } from 'dcl-catalyst-commons'
+import { Entity as ControllerEntity } from 'tcl-catalyst-commons'
 import {
   assertContentIsDenylisted,
   assertContentNotIsDenylisted,
@@ -21,7 +21,7 @@ import { TestServer } from '../TestServer'
 
 describe('Integration - Denylist', () => {
   const metadata: string = 'Some metadata'
-  const decentralandIdentity = createIdentity()
+  const telestoworldIdentity = createIdentity()
   const ownerIdentity = createIdentity()
   const testEnv = loadStandaloneTestEnvironment()
   let server: TestServer
@@ -31,7 +31,7 @@ describe('Integration - Denylist', () => {
       .configServer()
       .withBean(Bean.SYNCHRONIZATION_MANAGER, new MockedSynchronizationManager())
       .withBean(Bean.CONTENT_CLUSTER, MockedContentCluster.withAddress(ownerIdentity.address))
-      .withConfig(EnvironmentConfig.DECENTRALAND_ADDRESS, decentralandIdentity.address)
+      .withConfig(EnvironmentConfig.telestoworld_ADDRESS, telestoworldIdentity.address)
       .withConfig(EnvironmentConfig.DISABLE_DENYLIST, false)
       .andBuild()
 
@@ -59,7 +59,7 @@ describe('Integration - Denylist', () => {
     await assertEntityIsNotDenylisted(server, entityBeingDeployed)
 
     // Denylist the entity
-    await server.denylistEntity(entityBeingDeployed, decentralandIdentity)
+    await server.denylistEntity(entityBeingDeployed, telestoworldIdentity)
 
     // Assert that entity has been sanitized
     const denylistedEntity = await server.getEntityById(entityBeingDeployed.type, entityBeingDeployed.id)
@@ -85,13 +85,13 @@ describe('Integration - Denylist', () => {
     await server.deploy(deployData)
 
     // Denylist the entity
-    await server.denylistEntity(entityBeingDeployed, decentralandIdentity)
+    await server.denylistEntity(entityBeingDeployed, telestoworldIdentity)
 
     // Assert that entity file is not available
     await assertEntityIsDenylisted(server, entityBeingDeployed)
 
     // Undenylist the entity
-    await server.undenylistEntity(entityBeingDeployed, decentralandIdentity)
+    await server.undenylistEntity(entityBeingDeployed, telestoworldIdentity)
 
     // Assert that audit info marks the entity as denylisted
     await assertEntityIsNotDenylisted(server, entityBeingDeployed)
@@ -112,7 +112,7 @@ describe('Integration - Denylist', () => {
     await server.deploy(deployData)
 
     // Undenylist the entity
-    await server.undenylistEntity(entityBeingDeployed, decentralandIdentity)
+    await server.undenylistEntity(entityBeingDeployed, telestoworldIdentity)
 
     // Assert that audit info marks the entity as not denylisted
     await assertEntityIsNotDenylisted(server, entityBeingDeployed)
@@ -140,7 +140,7 @@ describe('Integration - Denylist', () => {
     await assertContentNotIsDenylisted(server, entityBeingDeployed, contentHash)
 
     // Denylist the content
-    await server.denylistContent(contentHash, decentralandIdentity)
+    await server.denylistContent(contentHash, telestoworldIdentity)
 
     // Assert that the content file is not available
     await assertFileIsNotOnServer(server, contentHash)
@@ -161,7 +161,7 @@ describe('Integration - Denylist', () => {
     expect(targetsBeforeBlacklist.length).toBe(0)
 
     // Denylist the entity
-    await server.denylistEntity(entityBeingDeployed, decentralandIdentity)
+    await server.denylistEntity(entityBeingDeployed, telestoworldIdentity)
 
     // Assert that the entity is now reported as target
     const targetsAfterBlacklist = await server.getDenylistTargets()
@@ -180,14 +180,14 @@ describe('Integration - Denylist', () => {
     await server.deploy(deployData)
 
     // Denylist the entity
-    await server.denylistEntity(entityBeingDeployed, decentralandIdentity)
+    await server.denylistEntity(entityBeingDeployed, telestoworldIdentity)
 
     // Make sure that the target is reported
     const targetsBeforeUndenylist: ControllerDenylistData[] = await server.getDenylistTargets()
     expect(targetsBeforeUndenylist.length).toBe(1)
 
     // Undenylist the entity
-    await server.undenylistEntity(entityBeingDeployed, decentralandIdentity)
+    await server.undenylistEntity(entityBeingDeployed, telestoworldIdentity)
 
     // Assert that the entity is no longer reported as target
     const targetsAfterUndenylist = await server.getDenylistTargets()

@@ -1,4 +1,4 @@
-import { Position } from 'decentraland-katalyst-utils/Positions'
+import { Position } from 'telestoworld-katalyst-utils/Positions'
 
 export type PeerInfo = {
   id: string

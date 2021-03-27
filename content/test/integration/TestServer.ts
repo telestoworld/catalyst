@@ -3,12 +3,13 @@ import { buildContentTarget, buildEntityTarget, DenylistTarget } from '@katalyst
 import { Bean, Environment, EnvironmentConfig } from '@katalyst/content/Environment'
 import { Server } from '@katalyst/content/Server'
 import { FailedDeployment } from '@katalyst/content/service/errors/FailedDeploymentsManager'
+import fetch from 'node-fetch'
 import {
   ContentClient,
   DeploymentFields,
   DeploymentOptions,
   DeploymentWithMetadataContentAndPointers
-} from 'dcl-catalyst-client'
+} from 'tcl-catalyst-client'
 import {
   ContentFileHash,
   Deployment as ControllerDeployment,
@@ -21,8 +22,7 @@ import {
   ServerAddress,
   ServerStatus,
   Timestamp
-} from 'dcl-catalyst-commons'
-import fetch from 'node-fetch'
+} from 'tcl-catalyst-commons'
 import { assertResponseIsOkOrThrow } from './E2EAssertions'
 import { deleteFolderRecursive, DeployData, hashAndSignMessage, Identity } from './E2ETestUtils'
 

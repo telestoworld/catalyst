@@ -1,5 +1,5 @@
-import { validateSignatureHandler } from 'decentraland-katalyst-commons/handlers'
-import { Metrics } from 'decentraland-katalyst-commons/metrics'
+import { validateSignatureHandler } from 'telestoworld-katalyst-commons/handlers'
+import { Metrics } from 'telestoworld-katalyst-commons/metrics'
 import express, { RequestHandler } from 'express'
 import { IRealm } from 'peerjs-server'
 import { ConfigService } from './configService'

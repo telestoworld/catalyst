@@ -3,7 +3,7 @@ import { ChallengeText } from '@katalyst/content/service/synchronization/Challen
 import { ContentCluster } from '@katalyst/content/service/synchronization/ContentCluster'
 import { ContentClusterFactory } from '@katalyst/content/service/synchronization/ContentClusterFactory'
 import { MockedDAOClient } from '@katalyst/test-helpers/service/synchronization/clients/MockedDAOClient'
-import { ServerAddress } from 'dcl-catalyst-commons'
+import { ServerAddress } from 'tcl-catalyst-commons'
 import { MockedFetcher } from '../../helpers/MockedFetcher'
 
 describe('ContentCluster', function () {

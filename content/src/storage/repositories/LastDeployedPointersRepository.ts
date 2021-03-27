@@ -1,9 +1,9 @@
-import { EntityId, EntityType, Pointer, Timestamp } from 'dcl-catalyst-commons'
+import { EntityId, EntityType, Pointer, Timestamp } from 'tcl-catalyst-commons'
 import { Repository } from '../Repository'
 import { DeploymentId } from './DeploymentsRepository'
 
 export class LastDeployedPointersRepository {
-  constructor(private readonly db: Repository) {}
+  constructor(private readonly db: Repository) { }
 
   /** Returns the last deployments (could be active or not) on the given pointers */
   getLastDeploymentsOnPointers(

@@ -2,7 +2,7 @@ import { ContentFile } from '@katalyst/content/controller/Controller'
 import { Entity } from '@katalyst/content/service/Entity'
 import { EntityFactory } from '@katalyst/content/service/EntityFactory'
 import { buildEntityAndFile, entityToFile } from '@katalyst/test-helpers/service/EntityTestFactory'
-import { EntityId, EntityType } from 'dcl-catalyst-commons'
+import { EntityId, EntityType } from 'tcl-catalyst-commons'
 
 describe('Service', () => {
   let entity: Entity

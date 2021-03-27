@@ -1,4 +1,4 @@
-import { DAOListContract } from 'decentraland-katalyst-contracts/DAOListContract'
+import { DAOListContract } from 'telestoworld-katalyst-contracts/DAOListContract'
 
 export interface DAOListClient {
   getAllValues(): Promise<Set<string>>

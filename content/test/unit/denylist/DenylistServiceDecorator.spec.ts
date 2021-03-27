@@ -21,9 +21,9 @@ import {
   MockedMetaverseContentServiceBuilder
 } from '@katalyst/test-helpers/service/MockedMetaverseContentService'
 import { MockedRepository } from '@katalyst/test-helpers/storage/MockedRepository'
-import { EntityVersion, Pointer } from 'dcl-catalyst-commons'
-import { Authenticator } from 'dcl-crypto'
 import { random } from 'faker'
+import { EntityVersion, Pointer } from 'tcl-catalyst-commons'
+import { Authenticator } from 'tcl-crypto'
 import { anything, instance, mock, when } from 'ts-mockito'
 
 describe('DenylistServiceDecorator', () => {
@@ -51,7 +51,7 @@ describe('DenylistServiceDecorator', () => {
 
   beforeAll(async () => {
     ;[entity1, entityFile1] = await buildEntity([P1, P3], content1)
-    ;[entity2] = await buildEntity([P2], content2)
+      ;[entity2] = await buildEntity([P2], content2)
 
     P1Target = buildPointerTarget(entity1.type, P1)
     content1Target = buildContentTarget(content1.hash)

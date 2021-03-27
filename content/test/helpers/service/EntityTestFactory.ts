@@ -1,14 +1,14 @@
 import { ContentFile } from '@katalyst/content/controller/Controller'
 import { Entity } from '@katalyst/content/service/Entity'
 import { EntityFactory } from '@katalyst/content/service/EntityFactory'
+import { random } from 'faker'
 import {
   buildEntityAndFile as buildEntityAndFileHelper,
   ContentFileHash,
   EntityType,
   Pointer,
   Timestamp
-} from 'dcl-catalyst-commons'
-import { random } from 'faker'
+} from 'tcl-catalyst-commons'
 
 /** Builds an entity with the given params, and also the file what represents it */
 export async function buildEntityAndFile(

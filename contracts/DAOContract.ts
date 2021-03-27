@@ -1,9 +1,9 @@
-import { EthAddress } from 'dcl-crypto'
-import { Catalyst } from 'decentraland-katalyst-contracts/Catalyst'
-import { handlerForNetwork } from 'decentraland-katalyst-contracts/utils'
+import { EthAddress } from 'tcl-crypto'
+import { Catalyst } from 'telestoworld-katalyst-contracts/Catalyst'
+import { handlerForNetwork } from 'telestoworld-katalyst-contracts/utils'
 
 export class DAOContract {
-  private constructor(private readonly contract: Catalyst) {}
+  private constructor(private readonly contract: Catalyst) { }
 
   async getCount(): Promise<number> {
     return parseInt(await this.contract.methods.catalystCount().call())

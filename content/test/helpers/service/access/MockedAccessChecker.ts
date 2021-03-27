@@ -1,6 +1,6 @@
 import { AccessChecker } from '@katalyst/content/service/access/AccessChecker'
-import { EntityType, Pointer, Timestamp } from 'dcl-catalyst-commons'
-import { EthAddress } from 'dcl-crypto'
+import { EntityType, Pointer, Timestamp } from 'tcl-catalyst-commons'
+import { EthAddress } from 'tcl-crypto'
 
 export class MockedAccessChecker implements AccessChecker {
   private returnErrors: boolean = false

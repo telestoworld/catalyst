@@ -1,5 +1,5 @@
 import { Repository, RepositoryTask } from '@katalyst/content/storage/Repository'
-import { EntityType, ServerAddress, Timestamp } from 'dcl-catalyst-commons'
+import { EntityType, ServerAddress, Timestamp } from 'tcl-catalyst-commons'
 import { SnapshotMetadata } from '../snapshots/SnapshotManager'
 import { IntPropertyMapper, JSONPropertyMapper, SystemPropertyMapper } from './SystemPropertyMappers'
 
@@ -17,7 +17,7 @@ export class SystemProperty<PropertyType> {
     new IntPropertyMapper()
   )
 
-  constructor(private readonly name: string, private readonly mapper: SystemPropertyMapper<PropertyType>) {}
+  constructor(private readonly name: string, private readonly mapper: SystemPropertyMapper<PropertyType>) { }
 
   getName(): string {
     return this.name
@@ -29,7 +29,7 @@ export class SystemProperty<PropertyType> {
 }
 
 export class SystemPropertiesManager {
-  constructor(private readonly repository: Repository) {}
+  constructor(private readonly repository: Repository) { }
 
   async getSystemProperty<T>(
     property: SystemProperty<T>,

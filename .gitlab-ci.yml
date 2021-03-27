@@ -1,4 +1,4 @@
-image: decentraland/ci-node:12
+image: telestoworld/ci-node:12
 
 build:
   only:
@@ -6,10 +6,9 @@ build:
     - staging
     - release
   script:
-    - cd status && yarn install && PUBLIC_URL=https://catalysts.decentraland.io yarn build && cd ..
-    - dcl-lock-sync
-    - cd .ci && npm install && dcl-up website-catalysts
-    - dcl-sync-release && cd ..
-    - dcl-upload status/build
-    - cd .ci && dcl-cache-invalidation
-
+    - cd status && yarn install && PUBLIC_URL=https://catalysts.telesto.world yarn build && cd ..
+    - tcl-lock-sync
+    - cd .ci && npm install && tcl-up website-catalysts
+    - tcl-sync-release && cd ..
+    - tcl-upload status/build
+    - cd .ci && tcl-cache-invalidation

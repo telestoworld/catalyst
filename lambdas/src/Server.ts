@@ -1,10 +1,10 @@
 import compression from 'compression'
 import cors from 'cors'
-import { Metrics } from 'decentraland-katalyst-commons/metrics'
 import express, { RequestHandler } from 'express'
 import http from 'http'
 import log4js from 'log4js'
 import morgan from 'morgan'
+import { Metrics } from 'telestoworld-katalyst-commons/metrics'
 import { OffChainWearablesManager } from './apis/collections/off-chain/OffChainWearablesManager'
 import { initializeCollectionsRoutes } from './apis/collections/routes'
 import { initializeContentV2Routes } from './apis/content-v2/routes'
@@ -75,7 +75,7 @@ export class Server {
       initializeProfilesRoutes(express.Router(), contentClient, ensOwnership, wearablesOwnership)
     )
 
-    // DCL-Crypto API implementation
+    // tcl-Crypto API implementation
     this.app.use('/crypto', initializeCryptoRoutes(express.Router(), env.getConfig(EnvironmentConfig.ETH_NETWORK)))
 
     // Images API for resizing contents

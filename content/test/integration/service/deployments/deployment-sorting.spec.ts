@@ -1,5 +1,5 @@
-import { Deployment, EntityType, SortingField, SortingOrder, Timestamp } from 'dcl-catalyst-commons'
 import ms from 'ms'
+import { Deployment, EntityType, SortingField, SortingOrder, Timestamp } from 'tcl-catalyst-commons'
 import { assertDeploymentsCount } from '../../E2EAssertions'
 import { loadTestEnvironment } from '../../E2ETestEnvironment'
 import { awaitUntil, buildDeployData, buildDeployDataAfterEntity } from '../../E2ETestUtils'

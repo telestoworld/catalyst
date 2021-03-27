@@ -10,11 +10,11 @@ import {
   SortingField,
   SortingOrder,
   Timestamp
-} from 'dcl-catalyst-commons'
-import { Authenticator } from 'dcl-crypto'
+} from 'tcl-catalyst-commons'
+import { Authenticator } from 'tcl-crypto'
 
 export class DeploymentsRepository {
-  constructor(private readonly db: Repository) {}
+  constructor(private readonly db: Repository) { }
 
   async areEntitiesDeployed(entityIds: EntityId[]): Promise<Map<EntityId, boolean>> {
     if (entityIds.length === 0) {
@@ -184,7 +184,7 @@ export class DeploymentsRepository {
                 to_timestamp($(entity.timestamp) / 1000.0),
                 $(entity.pointers),
                 $(metadata),
-                'https://peer.decentraland.org/content',
+                'https://peer.telestoworld.org/content',
                 to_timestamp($(auditInfo.localTimestamp) / 1000.0),
                 to_timestamp($(auditInfo.localTimestamp) / 1000.0),
                 $(auditInfo.authChain:json),

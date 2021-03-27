@@ -1,5 +1,5 @@
 import { FailedDeploymentsRepository } from '@katalyst/content/storage/repositories/FailedDeploymentsRepository'
-import { EntityId, EntityType, ServerAddress, Timestamp } from 'dcl-catalyst-commons'
+import { EntityId, EntityType, ServerAddress, Timestamp } from 'tcl-catalyst-commons'
 
 /**
  * This manager will handle all failed deployments

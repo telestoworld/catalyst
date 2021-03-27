@@ -1,6 +1,6 @@
 import Analytics from 'analytics-node'
-import { Authenticator, EthAddress } from 'dcl-crypto'
 import log4js from 'log4js'
+import { Authenticator, EthAddress } from 'tcl-crypto'
 import { Entity } from '../Entity'
 import { MetaverseContentService } from '../Service'
 

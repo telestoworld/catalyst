@@ -15,6 +15,7 @@ import {
 } from '@katalyst/content/service/Service'
 import { ContentItem, SimpleContentItem } from '@katalyst/content/storage/ContentStorage'
 import { Repository, RepositoryTask } from '@katalyst/content/storage/Repository'
+import { random } from 'faker'
 import {
   AuditInfo,
   ContentFileHash,
@@ -26,9 +27,8 @@ import {
   Pointer,
   ServerStatus,
   Timestamp
-} from 'dcl-catalyst-commons'
-import { AuthLinkType } from 'dcl-crypto'
-import { random } from 'faker'
+} from 'tcl-catalyst-commons'
+import { AuthLinkType } from 'tcl-crypto'
 import { buildEntityAndFile } from './EntityTestFactory'
 
 export class MockedMetaverseContentService implements MetaverseContentService {

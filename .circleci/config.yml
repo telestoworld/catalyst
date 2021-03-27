@@ -147,7 +147,7 @@ jobs:
     docker:
       - image: circleci/node:12-browsers
         environment: &ENVIRONMENT
-          DOCKER_IMAGE_NAME: decentraland/katalyst
+          DOCKER_IMAGE_NAME: telestoworld/katalyst
     steps:
       - <<: *attach_root
       - setup_remote_docker: { docker_layer_caching: true }
@@ -175,7 +175,7 @@ jobs:
     docker:
       - image: circleci/node:12-browsers
         environment: &ENVIRONMENT
-          DOCKER_IMAGE_NAME: decentraland/katalyst
+          DOCKER_IMAGE_NAME: telestoworld/katalyst
     steps:
       - <<: *attach_root
       - setup_remote_docker: { docker_layer_caching: true }

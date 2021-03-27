@@ -1,7 +1,7 @@
 import { ContentFile } from '@katalyst/content/controller/Controller'
 import { Bean } from '@katalyst/content/Environment'
 import { MockedSynchronizationManager } from '@katalyst/test-helpers/service/synchronization/MockedSynchronizationManager'
-import { Entity as ControllerEntity, EntityType } from 'dcl-catalyst-commons'
+import { Entity as ControllerEntity, EntityType } from 'tcl-catalyst-commons'
 import { assertDeploymentFailsWith, assertDeploymentsAreReported, buildDeployment } from './E2EAssertions'
 import { loadStandaloneTestEnvironment } from './E2ETestEnvironment'
 import { buildDeployData, DeployData } from './E2ETestUtils'

@@ -1,6 +1,6 @@
 import { SmartContentClient } from '@katalyst/lambdas/utils/SmartContentClient'
-import { EntityType } from 'dcl-catalyst-commons'
 import future, { IFuture } from 'fp-future'
+import { EntityType } from 'tcl-catalyst-commons'
 import { Wearable, WearableId, WearablesFilters } from '../types'
 import { preferEnglish, translateEntityIntoWearable } from '../Utils'
 import baseAvatars from './base-avatars'
@@ -15,7 +15,7 @@ export class OffChainWearablesManager {
   constructor(
     private readonly client: SmartContentClient,
     private readonly collections: OffChainCollections = DEFAULT_COLLECTIONS
-  ) {}
+  ) { }
 
   public async find(filters: WearablesFilters): Promise<Wearable[]> {
     // Load into memory all data regarding off-chain wearables

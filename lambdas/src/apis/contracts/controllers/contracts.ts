@@ -1,4 +1,4 @@
-import { ServerMetadata } from 'decentraland-katalyst-commons/ServerMetadata'
+import { ServerMetadata } from 'telestoworld-katalyst-commons/ServerMetadata'
 import { Request, Response } from 'express'
 import { DAOCache } from '../../../service/dao/DAOCache'
 

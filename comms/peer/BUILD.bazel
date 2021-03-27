@@ -9,7 +9,7 @@ package(default_visibility = ["//visibility:public"])
 ts_library(
     name = "peer",
     srcs = glob(["src/**/*.ts"]),
-    module_name = "decentraland-katalyst-peer",
+    module_name = "telestoworld-katalyst-peer",
     tsconfig = "//:tsconfig.json",
     deps = [
         "//commons/utils",

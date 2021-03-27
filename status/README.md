@@ -1,6 +1,6 @@
 # Catalyst Status
 
-This project is a simple create-react-app that displays information about all the catalysts listed in the [DAO](https://mainnet.aragon.org/#dcl.eth).
+This project is a simple create-react-app that displays information about all the catalysts listed in the [DAO](https://mainnet.aragon.org/#tcl.eth).
 
 ## What this does
 

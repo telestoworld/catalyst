@@ -1,7 +1,7 @@
 import { DeploymentField } from '@katalyst/content/controller/Controller'
 import { Bean } from '@katalyst/content/Environment'
 import { MockedSynchronizationManager } from '@katalyst/test-helpers/service/synchronization/MockedSynchronizationManager'
-import { Deployment, Fetcher } from 'dcl-catalyst-commons'
+import { Deployment, Fetcher } from 'tcl-catalyst-commons'
 import { loadStandaloneTestEnvironment } from '../E2ETestEnvironment'
 import { buildDeployData } from '../E2ETestUtils'
 import { TestServer } from '../TestServer'

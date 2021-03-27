@@ -1,9 +1,9 @@
-import { Fetcher, ServerAddress, ServerName, Timestamp } from 'dcl-catalyst-commons'
-import { DAOClient } from 'decentraland-katalyst-commons/DAOClient'
-import { ServerMetadata } from 'decentraland-katalyst-commons/ServerMetadata'
-import { delay } from 'decentraland-katalyst-utils/util'
 import log4js from 'log4js'
 import ms from 'ms'
+import { Fetcher, ServerAddress, ServerName, Timestamp } from 'tcl-catalyst-commons'
+import { DAOClient } from 'telestoworld-katalyst-commons/DAOClient'
+import { ServerMetadata } from 'telestoworld-katalyst-commons/ServerMetadata'
+import { delay } from 'telestoworld-katalyst-utils/util'
 import { clearTimeout, setTimeout } from 'timers'
 import { SystemPropertiesManager, SystemProperty } from '../system-properties/SystemProperties'
 import { ChallengeSupervisor, ChallengeText } from './ChallengeSupervisor'
@@ -35,7 +35,7 @@ export class ContentCluster implements IdentityProvider {
     private readonly fetcher: Fetcher,
     private readonly systemProperties: SystemPropertiesManager,
     private readonly bootstrapFromScratch: boolean
-  ) {}
+  ) { }
 
   /** Connect to the DAO for the first time */
   async connect(): Promise<void> {
@@ -180,8 +180,7 @@ export class ContentCluster implements IdentityProvider {
           break
         } else if (serversWithMyChallengeText.length > 1) {
           ContentCluster.LOGGER.warn(
-            `Expected to find only one server with my challenge text '${this.challengeSupervisor.getChallengeText()}', but found ${
-              serversWithMyChallengeText.length
+            `Expected to find only one server with my challenge text '${this.challengeSupervisor.getChallengeText()}', but found ${serversWithMyChallengeText.length
             }`
           )
           break
@@ -212,7 +211,7 @@ export class ContentCluster implements IdentityProvider {
     try {
       const { challengeText }: { challengeText: ChallengeText } = await this.fetcher.fetchJson(`${address}/challenge`)
       return challengeText
-    } catch (error) {}
+    } catch (error) { }
   }
 }
 

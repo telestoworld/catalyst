@@ -1,4 +1,4 @@
-import { Fetcher } from 'dcl-catalyst-commons'
+import { Fetcher } from 'tcl-catalyst-commons'
 import { CURRENT_COMMIT_HASH, Environment, EnvironmentConfig } from '../Environment'
 
 export class FetcherFactory {
@@ -8,7 +8,7 @@ export class FetcherFactory {
     return new Fetcher({
       timeout: fetchRequestTimeout,
       headers: {
-        'User-Agent': `content-server/${CURRENT_COMMIT_HASH} (+https://github.com/decentraland/catalyst)`,
+        'User-Agent': `content-server/${CURRENT_COMMIT_HASH} (+https://github.com/telestoworld/catalyst)`,
         Origin: contentServerAddress
       }
     })

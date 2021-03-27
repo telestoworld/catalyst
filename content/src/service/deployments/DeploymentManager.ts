@@ -15,7 +15,7 @@ import {
   Pointer,
   SortingField,
   Timestamp
-} from 'dcl-catalyst-commons'
+} from 'tcl-catalyst-commons'
 import { DELTA_POINTER_RESULT, DeploymentResult } from '../pointers/PointerManager'
 
 export class DeploymentManager {

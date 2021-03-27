@@ -1,8 +1,8 @@
 import { streamMap } from '@katalyst/content/service/synchronization/streaming/StreamHelper'
-import { DeploymentWithAuditInfo, ServerAddress, Timestamp } from 'dcl-catalyst-commons'
-import { delay } from 'decentraland-katalyst-utils/util'
 import log4js from 'log4js'
 import ms from 'ms'
+import { DeploymentWithAuditInfo, ServerAddress, Timestamp } from 'tcl-catalyst-commons'
+import { delay } from 'telestoworld-katalyst-utils/util'
 import { clearTimeout, setTimeout } from 'timers'
 import { SystemPropertiesManager, SystemProperty } from '../system-properties/SystemProperties'
 import { ContentServerClient } from './clients/ContentServerClient'
@@ -30,7 +30,7 @@ export class ClusterSynchronizationManager implements SynchronizationManager {
     private readonly deployer: EventDeployer,
     private readonly timeBetweenSyncs: number,
     private readonly disableSynchronization: boolean
-  ) {}
+  ) { }
 
   async start(): Promise<void> {
     if (this.disableSynchronization) {

@@ -31,7 +31,7 @@ Please avoid using this endpoint, getting to `/history` retrieves the same infor
 - serverName
   - Format: string
   - Value: timestamp
-  - Example: serverName="https://peer.decentraland.org/content"
+  - Example: serverName="https://peer.telestoworld.org/content"
   - Default value: NULL - no filter per server is default configured
   - Description: A filter of the collection per name of the server where the entity was deployed.
 
@@ -51,13 +51,13 @@ Please avoid using this endpoint, getting to `/history` retrieves the same infor
       "entityType": "scene",
       "entityId": "QmVUQ6koiXUMygmKUGp9GwRW5e2qDTjNrwT6JFESCjPkM8",
       "timestamp": 1611864091646,
-      "serverName": "https%3A%2F%2Fpeer.decentraland.org%2Fcontent"
+      "serverName": "https%3A%2F%2Fpeer.telestoworld.org%2Fcontent"
     },
     {
       "entityType": "scene",
       "entityId": "QmPGMTUxLwqSkzjapbPwd5fMkVwis3VkepLAWhRpqTVJEj",
       "timestamp": 1611864089589,
-      "serverName": "https%3A%2F%2Fpeer.decentraland.org%2Fcontent"
+      "serverName": "https%3A%2F%2Fpeer.telestoworld.org%2Fcontent"
     }
   ],
   "filters": {},

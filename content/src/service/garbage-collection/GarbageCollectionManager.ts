@@ -1,7 +1,7 @@
 import { SystemPropertiesManager, SystemProperty } from '@katalyst/content/service/system-properties/SystemProperties'
 import { Repository } from '@katalyst/content/storage/Repository'
-import { ContentFileHash, delay, Timestamp } from 'dcl-catalyst-commons'
 import log4js from 'log4js'
+import { ContentFileHash, delay, Timestamp } from 'tcl-catalyst-commons'
 import { MetaverseContentService } from '../Service'
 
 export class GarbageCollectionManager {
@@ -18,7 +18,7 @@ export class GarbageCollectionManager {
     private readonly service: MetaverseContentService,
     private readonly performGarbageCollection: boolean,
     private readonly sweepInterval: number
-  ) {}
+  ) { }
 
   async start(): Promise<void> {
     if (this.performGarbageCollection) {

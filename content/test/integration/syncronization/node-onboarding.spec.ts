@@ -1,4 +1,4 @@
-import { ContentFileHash, Timestamp } from 'dcl-catalyst-commons'
+import { ContentFileHash, Timestamp } from 'tcl-catalyst-commons'
 import {
   assertDeploymentsAreReported,
   assertEntityIsOverwrittenBy,

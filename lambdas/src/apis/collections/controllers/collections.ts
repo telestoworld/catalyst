@@ -1,7 +1,7 @@
-import { ChainId } from '@dcl/schemas'
 import { SmartContentClient } from '@katalyst/lambdas/utils/SmartContentClient'
-import { Entity, EntityType } from 'dcl-catalyst-commons'
+import { ChainId } from '@tcl/schemas'
 import { Request, Response } from 'express'
+import { Entity, EntityType } from 'tcl-catalyst-commons'
 import { WearableMetadata } from '../types'
 import { createExternalContentUrl, findHashForFile, preferEnglish } from '../Utils'
 
@@ -23,7 +23,7 @@ export async function getStandardErc721(client: SmartContentClient, req: Request
       const wearableMetadata: WearableMetadata = entity.metadata
       const name = preferEnglish(wearableMetadata.i18n)
       const totalEmission = RARITIES_EMISSIONS[wearableMetadata.rarity]
-      const description = emission ? `DCL Wearable ${emission}/${totalEmission}` : ''
+      const description = emission ? `tcl Wearable ${emission}/${totalEmission}` : ''
       const image = createExternalContentUrl(client, entity, wearableMetadata.image)
       const thumbnail = createExternalContentUrl(client, entity, wearableMetadata.thumbnail)
       const standardErc721 = {
@@ -79,7 +79,7 @@ function getProtocol(chainId: string): string | undefined {
 
 function buildUrn(protocol: string, contract: string, option: string): string {
   const version = contract.startsWith('0x') ? 'v2' : 'v1'
-  return `urn:decentraland:${protocol}:collections-${version}:${contract}:${option}`
+  return `urn:telestoworld:${protocol}:collections-${version}:${contract}:${option}`
 }
 
 async function internalContents(

@@ -1,15 +1,15 @@
-import { AuthChain, Authenticator, EthAddress, ValidationResult } from 'dcl-crypto'
-import { DECENTRALAND_ADDRESS } from 'decentraland-katalyst-commons/addresses'
+import { AuthChain, Authenticator, EthAddress, ValidationResult } from 'tcl-crypto'
+import { telestoworld_ADDRESS } from 'telestoworld-katalyst-commons/addresses'
 import { EthereumProvider } from 'web3x/providers'
 
 export class ContentAuthenticator extends Authenticator {
-  constructor(private readonly decentralandAddress: EthAddress = DECENTRALAND_ADDRESS) {
+  constructor(private readonly telestoworldAddress: EthAddress = telestoworld_ADDRESS) {
     super()
   }
 
-  /** Return whether the given address used is owned by Decentraland */
-  isAddressOwnedByDecentraland(address: EthAddress): boolean {
-    return address.toLowerCase() === this.decentralandAddress.toLowerCase()
+  /** Return whether the given address used is owned by telestoworld */
+  isAddressOwnedBytelestoworld(address: EthAddress): boolean {
+    return address.toLowerCase() === this.telestoworldAddress.toLowerCase()
   }
 
   /** Validate that the signature belongs to the Ethereum address */

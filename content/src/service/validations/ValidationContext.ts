@@ -10,14 +10,14 @@ export enum Validation {
   LEGACY_ENTITY,
   CONTENT,
   ENTITY_HASH,
-  DECENTRALAND_ADDRESS
+  telestoworld_ADDRESS
 }
 
 export class ValidationContext {
   static readonly ALL: ValidationContext = new ValidationContext(Object.keys(Validation).map((key) => Validation[key]))
   static readonly LOCAL: ValidationContext = ValidationContext.ALL.without(
     Validation.MUST_HAVE_FAILED_BEFORE,
-    Validation.DECENTRALAND_ADDRESS,
+    Validation.telestoworld_ADDRESS,
     Validation.LEGACY_ENTITY
   )
   static readonly LOCAL_LEGACY_ENTITY: ValidationContext = ValidationContext.ALL.without(
@@ -44,7 +44,7 @@ export class ValidationContext {
     Validation.REQUEST_SIZE,
     Validation.NO_NEWER,
     Validation.RECENT,
-    Validation.DECENTRALAND_ADDRESS,
+    Validation.telestoworld_ADDRESS,
     Validation.LEGACY_ENTITY,
     Validation.NO_REDEPLOYS
   )

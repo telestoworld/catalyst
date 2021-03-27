@@ -1,6 +1,6 @@
-import { EntityType, Fetcher, Pointer, Timestamp } from 'dcl-catalyst-commons'
-import { EthAddress } from 'dcl-crypto'
 import log4js from 'log4js'
+import { EntityType, Fetcher, Pointer, Timestamp } from 'tcl-catalyst-commons'
+import { EthAddress } from 'tcl-crypto'
 import { ContentAuthenticator } from '../auth/Authenticator'
 import { AccessChecker } from './AccessChecker'
 import { AccessCheckerForProfiles } from './AccessCheckerForProfiles'
@@ -17,19 +17,19 @@ export class AccessCheckerImpl implements AccessChecker {
   constructor(
     authenticator: ContentAuthenticator,
     fetcher: Fetcher,
-    dclParcelAccessUrl: string,
-    dclCollectionsAccessUrl: string
+    tclParcelAccessUrl: string,
+    tclCollectionsAccessUrl: string
   ) {
     this.accessCheckerForScenes = new AccessCheckerForScenes(
       authenticator,
       fetcher,
-      dclParcelAccessUrl,
+      tclParcelAccessUrl,
       AccessCheckerImpl.LOGGER
     )
     this.accessCheckerForProfiles = new AccessCheckerForProfiles(authenticator)
     this.accessCheckerForWearables = new AccessCheckerForWearables(
       fetcher,
-      dclCollectionsAccessUrl,
+      tclCollectionsAccessUrl,
       AccessCheckerImpl.LOGGER
     )
   }

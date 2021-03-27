@@ -3,9 +3,9 @@ import { GarbageCollectionManager } from '@katalyst/content/service/garbage-coll
 import { MetaverseContentService } from '@katalyst/content/service/Service'
 import { NoOpValidations } from '@katalyst/test-helpers/service/validations/NoOpValidations'
 import assert from 'assert'
-import { ContentFileHash } from 'dcl-catalyst-commons'
-import { delay } from 'decentraland-katalyst-utils/util'
 import ms from 'ms'
+import { ContentFileHash } from 'tcl-catalyst-commons'
+import { delay } from 'telestoworld-katalyst-utils/util'
 import { loadStandaloneTestEnvironment } from '../../E2ETestEnvironment'
 import {
   awaitUntil,
@@ -37,7 +37,7 @@ describe('Integration - Garbage Collection', () => {
       contentPaths: ['content/test/integration/resources/some-binary-file.png']
     })
     E3 = await buildDeployDataAfterEntity(E2, [P2])
-    ;[sharedContent, onlyE1Content] = Array.from(E1.entity.content!.values())
+      ;[sharedContent, onlyE1Content] = Array.from(E1.entity.content!.values())
   })
 
   beforeEach(async () => {

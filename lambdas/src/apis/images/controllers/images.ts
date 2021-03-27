@@ -1,4 +1,4 @@
-import { ensureDirectoryExists } from 'decentraland-katalyst-commons/fsutils'
+import { ensureDirectoryExists } from 'telestoworld-katalyst-commons/fsutils'
 import { Request, Response } from 'express'
 import future, { IFuture } from 'fp-future'
 import fs from 'fs'

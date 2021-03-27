@@ -5,12 +5,12 @@ package(default_visibility = ["//visibility:public"])
 ts_library(
     name = "servers",
     srcs = glob(["*.ts"]),
-    module_name = "decentraland-katalyst-commons",
+    module_name = "telestoworld-katalyst-commons",
     tsconfig = "//:tsconfig.json",
     deps = [
         "//contracts",
         "@npm//@types",
-        "@npm//dcl-crypto",
+        "@npm//tcl-crypto",
         "@npm//express",
         "@npm//prom-client",
         "@npm//response-time",

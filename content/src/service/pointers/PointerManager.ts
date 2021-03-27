@@ -3,7 +3,7 @@ import { happenedBefore } from '@katalyst/content/service/time/TimeSorting'
 import { DeploymentId } from '@katalyst/content/storage/repositories/DeploymentsRepository'
 import { LastDeployedPointersRepository } from '@katalyst/content/storage/repositories/LastDeployedPointersRepository'
 import { PointerHistoryRepository } from '@katalyst/content/storage/repositories/PointerHistoryRepository'
-import { Pointer } from 'dcl-catalyst-commons'
+import { Pointer } from 'tcl-catalyst-commons'
 
 /**
  * Manage all pointer data

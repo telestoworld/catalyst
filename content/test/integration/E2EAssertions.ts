@@ -1,6 +1,7 @@
 import { FailedDeployment, FailureReason } from '@katalyst/content/service/errors/FailedDeploymentsManager'
 import { DeploymentResult, isSuccessfulDeployment } from '@katalyst/content/service/Service'
 import assert from 'assert'
+import { Response } from 'node-fetch'
 import {
   ContentFileHash,
   Deployment as ControllerDeployment,
@@ -10,9 +11,8 @@ import {
   Hashing,
   LegacyAuditInfo,
   Timestamp
-} from 'dcl-catalyst-commons'
-import { Authenticator } from 'dcl-crypto'
-import { Response } from 'node-fetch'
+} from 'tcl-catalyst-commons'
+import { Authenticator } from 'tcl-crypto'
 import { assertPromiseIsRejected, assertPromiseRejectionGeneric } from '../helpers/PromiseAssertions'
 import { DeployData } from './E2ETestUtils'
 import { TestServer } from './TestServer'
@@ -25,8 +25,7 @@ export async function assertEntitiesAreDeployedButNotActive(server: TestServer, 
     assert.equal(
       unexpectedEntities.length,
       0,
-      `Expected not to find entity with id ${entity.id} when checking for pointer ${
-        entity.pointers
+      `Expected not to find entity with id ${entity.id} when checking for pointer ${entity.pointers
       } on server '${server.getAddress()}.'`
     )
     await assertEntityIsOnServer(server, entity)
@@ -90,8 +89,7 @@ export async function assertDeploymentsAreReported(server: TestServer, ...expect
   assert.equal(
     deployments.length,
     expectedDeployments.length,
-    `Expected to find ${expectedDeployments.length} deployments on server ${server.getAddress()}. Instead, found ${
-      deployments.length
+    `Expected to find ${expectedDeployments.length} deployments on server ${server.getAddress()}. Instead, found ${deployments.length
     }.`
   )
 

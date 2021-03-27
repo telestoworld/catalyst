@@ -1,15 +1,15 @@
-import { DEFAULT_DCL_PARCEL_ACCESS_URL_MAINNET } from '@katalyst/content/Environment'
+import { DEFAULT_tcl_PARCEL_ACCESS_URL_MAINNET } from '@katalyst/content/Environment'
 import { AccessCheckerImpl } from '@katalyst/content/service/access/AccessCheckerImpl'
 import { AuditInfo } from '@katalyst/content/service/Audit'
 import { ContentAuthenticator } from '@katalyst/content/service/auth/Authenticator'
 import { Entity, EntityId, EntityType, Pointer } from '@katalyst/content/service/Entity'
 import { FailedDeployment } from '@katalyst/content/service/errors/FailedDeploymentsManager'
 import { Timestamp } from '@katalyst/content/service/time/TimeSorting'
-import { Fetcher } from 'dcl-catalyst-commons'
-import { AuthChain, EthAddress, ValidationResult } from 'dcl-crypto'
 import fs from 'fs'
 import ms from 'ms'
 import fetch, { Response } from 'node-fetch'
+import { Fetcher } from 'tcl-catalyst-commons'
+import { AuthChain, EthAddress, ValidationResult } from 'tcl-crypto'
 import { httpProviderForNetwork } from '../../../contracts/utils'
 
 describe('Failed Deployments validations.', () => {
@@ -52,7 +52,7 @@ describe('Failed Deployments validations.', () => {
       const accessChecker = new AccessCheckerImpl(
         new ContentAuthenticator(),
         new Fetcher(),
-        DEFAULT_DCL_PARCEL_ACCESS_URL_MAINNET
+        DEFAULT_tcl_PARCEL_ACCESS_URL_MAINNET
       )
 
       if (reviewSceneErrors) {
@@ -76,10 +76,10 @@ describe('Failed Deployments validations.', () => {
             } else {
               const overwriteEntity: Entity | undefined = accessSnapshot.overwrittenBy
                 ? await fetchEntity(
-                    'https://peer.decentraland.org/content',
-                    EntityType.SCENE,
-                    accessSnapshot.overwrittenBy
-                  )
+                  'https://peer.telestoworld.org/content',
+                  EntityType.SCENE,
+                  accessSnapshot.overwrittenBy
+                )
                 : undefined
               console.log(
                 ' => Invalid',
@@ -205,7 +205,7 @@ describe('Failed Deployments validations.', () => {
       const accessChecker = new AccessCheckerImpl(
         new ContentAuthenticator(),
         new Fetcher(),
-        'https://api.thegraph.com/subgraphs/name/decentraland/land-manager'
+        'https://api.thegraph.com/subgraphs/name/telestoworld/space-manager'
       )
       const accessSnapshot = {
         pointers: ['55,-132'],
@@ -230,7 +230,7 @@ describe('Failed Deployments validations.', () => {
 })
 
 async function getFailedDeployments(): Promise<FailedDeployment[]> {
-  return fetchArray(`https://bot1-catalyst.decentraland.org/content/failedDeployments`)
+  return fetchArray(`https://bot1-catalyst.telestoworld.org/content/failedDeployments`)
 }
 
 function onlyUnique<T>(value: T, index: number, self: T[]): boolean {
@@ -254,7 +254,7 @@ function groupBy<K extends keyof V, V>(items: V[], groupingProperty: K): Associa
   return items.reduce(function (rv: AssociativeArray<V>, x: V) {
     const index = x[groupingProperty]
     if (isAssociativeIndex(index)) {
-      ;(rv[index] = rv[index] || []).push(x)
+      ; (rv[index] = rv[index] || []).push(x)
     }
     return rv
   }, {})

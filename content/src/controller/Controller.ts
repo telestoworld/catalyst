@@ -1,3 +1,8 @@
+import destroy from 'destroy'
+import express from 'express'
+import fs from 'fs'
+import log4js from 'log4js'
+import onFinished from 'on-finished'
 import {
   ContentFileHash,
   Entity as ControllerEntity,
@@ -10,13 +15,8 @@ import {
   SortingField,
   SortingOrder,
   Timestamp
-} from 'dcl-catalyst-commons'
-import { AuthChain, Authenticator, AuthLink, EthAddress, Signature } from 'dcl-crypto'
-import destroy from 'destroy'
-import express from 'express'
-import fs from 'fs'
-import log4js from 'log4js'
-import onFinished from 'on-finished'
+} from 'tcl-catalyst-commons'
+import { AuthChain, Authenticator, AuthLink, EthAddress, Signature } from 'tcl-crypto'
 import { Denylist, DenylistSignatureValidationResult, isSuccessfulOperation } from '../denylist/Denylist'
 import { parseDenylistTypeAndId } from '../denylist/DenylistTarget'
 import { CURRENT_CATALYST_VERSION, CURRENT_COMMIT_HASH, CURRENT_CONTENT_VERSION } from '../Environment'
@@ -45,7 +45,7 @@ export class Controller {
     private readonly challengeSupervisor: ChallengeSupervisor,
     private readonly snapshotManager: SnapshotManager,
     private readonly ethNetwork: string
-  ) {}
+  ) { }
 
   async getEntities(req: express.Request, res: express.Response) {
     // Method: GET

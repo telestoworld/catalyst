@@ -1,4 +1,4 @@
-import { DeploymentBase as ControllerDeployment } from 'dcl-catalyst-commons'
+import { DeploymentBase as ControllerDeployment } from 'tcl-catalyst-commons'
 import { Deployment } from '../service/deployments/DeploymentManager'
 import { DeploymentField } from './Controller'
 

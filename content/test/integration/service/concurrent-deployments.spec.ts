@@ -1,5 +1,5 @@
 import { MetaverseContentService } from '@katalyst/content/service/Service'
-import { EntityType } from 'dcl-catalyst-commons'
+import { EntityType } from 'tcl-catalyst-commons'
 import { loadStandaloneTestEnvironment } from '../E2ETestEnvironment'
 import { buildDeployData, deployEntitiesCombo, EntityCombo } from '../E2ETestUtils'
 

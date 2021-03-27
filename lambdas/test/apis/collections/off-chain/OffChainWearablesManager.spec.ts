@@ -1,7 +1,7 @@
 import { OffChainWearablesManager } from '@katalyst/lambdas/apis/collections/off-chain/OffChainWearablesManager'
 import { Wearable, WearableId } from '@katalyst/lambdas/apis/collections/types'
 import { SmartContentClient } from '@katalyst/lambdas/utils/SmartContentClient'
-import { EntityType } from 'dcl-catalyst-commons'
+import { EntityType } from 'tcl-catalyst-commons'
 import { anything, deepEqual, instance, mock, verify, when } from 'ts-mockito'
 
 const COLLECTION_ID_1 = 'some-collection'
@@ -85,11 +85,11 @@ function assertContentServerWasCalledOnceWithIds(contentClient: SmartContentClie
 }
 
 function contentServer() {
-  const mockedClient = mock(SmartContentClient)
-  when(mockedClient.fetchEntitiesByPointers(anything(), anything())).thenCall((_, ids) =>
+  const mocketclient = mock(SmartContentClient)
+  when(mocketclient.fetchEntitiesByPointers(anything(), anything())).thenCall((_, ids) =>
     Promise.resolve(ids.map((id) => buildEntity(id)))
   )
-  return { instance: instance(mockedClient), mock: mockedClient }
+  return { instance: instance(mocketclient), mock: mocketclient }
 }
 
 function buildEntity(id: WearableId) {

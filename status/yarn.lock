@@ -4417,32 +4417,32 @@ data-urls@^1.0.0, data-urls@^1.1.0:
     whatwg-mimetype "^2.2.0"
     whatwg-url "^7.0.0"
 
-dcl-catalyst-client@^2.0.0:
+tcl-catalyst-client@^2.0.0:
   version "2.0.0"
-  resolved "https://registry.yarnpkg.com/dcl-catalyst-client/-/dcl-catalyst-client-2.0.0.tgz#258a17f54ab71ec069fe85a8ba10580672700785"
+  resolved "https://registry.yarnpkg.com/tcl-catalyst-client/-/tcl-catalyst-client-2.0.0.tgz#258a17f54ab71ec069fe85a8ba10580672700785"
   integrity sha512-7jQrmpE+7VmAy4P9n7rvL70K3mzQZ4HVifwqSIRROq84v01Pjc9bI2e8knYblqSrHkqAkr22x3VUwklAJO1Dvw==
   dependencies:
-    dcl-catalyst-commons "^1.4.0"
-    dcl-crypto "^2.2.0"
+    tcl-catalyst-commons "^1.4.0"
+    tcl-crypto "^2.2.0"
     isomorphic-form-data "^2.0.0"
 
-dcl-catalyst-commons@^1.4.0:
+tcl-catalyst-commons@^1.4.0:
   version "1.4.0"
-  resolved "https://registry.yarnpkg.com/dcl-catalyst-commons/-/dcl-catalyst-commons-1.4.0.tgz#c7c1a46051e9d07c9bceceadf2e912a5f71b465b"
+  resolved "https://registry.yarnpkg.com/tcl-catalyst-commons/-/tcl-catalyst-commons-1.4.0.tgz#c7c1a46051e9d07c9bceceadf2e912a5f71b465b"
   integrity sha512-l2xd4lmQ5AbDfw19+Kc21XHcXVJSWLDKpGLXRHjk2+7vluHMZapV/nnl/AHRHHAJoIuSSk13Jqpc0PWQ/wsjLA==
   dependencies:
     "@types/isomorphic-fetch" "0.0.35"
     "@types/ms" "^0.7.31"
     abort-controller "^3.0.0"
     cids "^0.8.0"
-    dcl-crypto "^2.1.0"
+    tcl-crypto "^2.1.0"
     isomorphic-fetch "^2.2.1"
     ms "^2.1.2"
     multihashing-async "^0.8.1"
 
-dcl-crypto@^2.1.0, dcl-crypto@^2.2.0:
+tcl-crypto@^2.1.0, tcl-crypto@^2.2.0:
   version "2.2.0"
-  resolved "https://registry.yarnpkg.com/dcl-crypto/-/dcl-crypto-2.2.0.tgz#d9ebb1177caac40f57ae5e3016d0af46c64c4efc"
+  resolved "https://registry.yarnpkg.com/tcl-crypto/-/tcl-crypto-2.2.0.tgz#d9ebb1177caac40f57ae5e3016d0af46c64c4efc"
   integrity sha512-7UUhIue8y4bs85gmW+cm9uSJITwGI9CDBBtfXCCF6MGnkbG5E81iiI68P8jd6tNDPeXV4OfL+0a7X/jGtDSEcQ==
   dependencies:
     eth-crypto "^1.5.1"
@@ -4481,9 +4481,9 @@ decamelize@^1.2.0:
   resolved "https://registry.yarnpkg.com/decamelize/-/decamelize-1.2.0.tgz#f6534d15148269b20352e7bee26f501f9a191290"
   integrity sha1-9lNNFRSCabIDUue+4m9QH5oZEpA=
 
-decentraland-katalyst-peer@^0.2.10:
+telestoworld-katalyst-peer@^0.2.10:
   version "0.2.10"
-  resolved "https://registry.yarnpkg.com/decentraland-katalyst-peer/-/decentraland-katalyst-peer-0.2.10.tgz#2caeed423916f5d74f5e9a4eb0d68ba2713d249d"
+  resolved "https://registry.yarnpkg.com/telestoworld-katalyst-peer/-/telestoworld-katalyst-peer-0.2.10.tgz#2caeed423916f5d74f5e9a4eb0d68ba2713d249d"
   integrity sha512-EXTnkjDsTPRMiUnsTDw1WZbcFcef3CMWjXBjjXann3pjDrxnsPsxstN6E/WaD0b+R6CmVZwvOmbKzd6Tm8C7tQ==
   dependencies:
     eventemitter3 "^4.0.0"
@@ -4491,9 +4491,9 @@ decentraland-katalyst-peer@^0.2.10:
     protobufjs "^6.8.8"
     simple-peer "^9.6.2"
 
-decentraland-ui@^2.23.0:
+telestoworld-ui@^2.23.0:
   version "2.23.0"
-  resolved "https://registry.yarnpkg.com/decentraland-ui/-/decentraland-ui-2.23.0.tgz#61ef038a38a28d25c2ff3723c5426bcd62156021"
+  resolved "https://registry.yarnpkg.com/telestoworld-ui/-/telestoworld-ui-2.23.0.tgz#61ef038a38a28d25c2ff3723c5426bcd62156021"
   integrity sha512-ziACHk87xznPWa7MDm5nedJTHSSwk3rpvEls6e48vtAI4hZ/shh0hBlfamBF4LTOVn53Ff7SPTKuS6r2BlsnJw==
   dependencies:
     balloon-css "^0.5.0"
@@ -9377,7 +9377,7 @@ p-locate@^2.0.0:
 p-locate@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/p-locate/-/p-locate-3.0.0.tgz#322d69a05c0264b25997d9f40cd8a891ab0064a4"
-  integrity sha512-x+12w/To+4GFfgJhBEpiDcLozRJGegY+Ei7/z0tSLkMmxGZNybVMSfWj9aJn8Z5Fc7dBUNJOOVgPv2H7IwulSQ==
+  integrity sha512-x+12w/To+4GFfgJhBEpitclozRJGegY+Ei7/z0tSLkMmxGZNybVMSfWj9aJn8Z5Fc7dBUNJOOVgPv2H7IwulSQ==
   dependencies:
     p-limit "^2.0.0"
 

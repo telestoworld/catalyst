@@ -3,7 +3,7 @@ import { OffChainWearablesManager } from '@katalyst/lambdas/apis/collections/off
 import { WearableId } from '@katalyst/lambdas/apis/collections/types'
 import { SmartContentClient } from '@katalyst/lambdas/utils/SmartContentClient'
 import { TheGraphClient } from '@katalyst/lambdas/utils/TheGraphClient'
-import { EntityType } from 'dcl-catalyst-commons'
+import { EntityType } from 'tcl-catalyst-commons'
 import { anything, deepEqual, instance, mock, verify, when } from 'ts-mockito'
 
 const SOME_ADDRESS = '0x079bed9c31cb772c4c156f86e1cff15bf751add0'
@@ -166,9 +166,9 @@ function contentServerThatReturns(metadata?: any) {
     timestamp: 10,
     metadata
   }
-  const mockedClient = mock(SmartContentClient)
-  when(mockedClient.fetchEntitiesByPointers(anything(), anything())).thenResolve(metadata ? [entity] : [])
-  return { instance: instance(mockedClient), mock: mockedClient }
+  const mocketclient = mock(SmartContentClient)
+  when(mocketclient.fetchEntitiesByPointers(anything(), anything())).thenResolve(metadata ? [entity] : [])
+  return { instance: instance(mocketclient), mock: mocketclient }
 }
 
 function noOwnedWearables() {
@@ -176,9 +176,9 @@ function noOwnedWearables() {
 }
 
 function ownedWearables(...ownedWearables: WearableId[]): TheGraphClient {
-  const mockedClient = mock(TheGraphClient)
-  when(mockedClient.findWearablesByOwner(anything())).thenResolve(ownedWearables)
-  return instance(mockedClient)
+  const mocketclient = mock(TheGraphClient)
+  when(mocketclient.findWearablesByOwner(anything())).thenResolve(ownedWearables)
+  return instance(mocketclient)
 }
 
 function noExistingWearables() {
@@ -186,7 +186,7 @@ function noExistingWearables() {
 }
 
 function existingWearables(...existingWearables: WearableId[]) {
-  const mockedClient = mock(TheGraphClient)
-  when(mockedClient.findWearablesByFilters(anything(), anything())).thenResolve(existingWearables)
-  return { instance: instance(mockedClient), mock: mockedClient }
+  const mocketclient = mock(TheGraphClient)
+  when(mocketclient.findWearablesByFilters(anything(), anything())).thenResolve(existingWearables)
+  return { instance: instance(mocketclient), mock: mocketclient }
 }

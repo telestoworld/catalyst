@@ -147,7 +147,7 @@ List all deployments stored in the content server
             "ethAddress": "0xF3aC247cA55ACc36a0b532b193EF60F463d78cA4",
             "version": 3,
             "avatar": {
-              "bodyShape": "dcl://base-avatars/BaseMale",
+              "bodyShape": "tcl://base-avatars/BaseMale",
               "snapshots": {
                 "face": "Qmc1Tbmaow1gRu3T6XYFNKi2YtH5TuVv1h3Q4m9vD5xizs",
                 "face128": "QmaxLeiGu6XFKAjwdStKs4MKaJKp855ZJfQ8i4JFK8YaLg",
@@ -185,14 +185,14 @@ List all deployments stored in the content server
                 }
               },
               "wearables": [
-                "dcl://base-avatars/cool_hair",
-                "dcl://base-avatars/eyebrows_05",
-                "dcl://base-avatars/eyes_03",
-                "dcl://base-avatars/mouth_06",
-                "dcl://base-avatars/soccer_shirt",
-                "dcl://base-avatars/moccasin",
-                "dcl://base-avatars/thug_life",
-                "dcl://base-avatars/oxford_pants"
+                "tcl://base-avatars/cool_hair",
+                "tcl://base-avatars/eyebrows_05",
+                "tcl://base-avatars/eyes_03",
+                "tcl://base-avatars/mouth_06",
+                "tcl://base-avatars/soccer_shirt",
+                "tcl://base-avatars/moccasin",
+                "tcl://base-avatars/thug_life",
+                "tcl://base-avatars/oxford_pants"
               ]
             },
             "inventory": [],
@@ -341,7 +341,7 @@ List all deployments stored in the content server
         },
         "communications": {
           "type": "webrtc",
-          "signalling": "https://signalling-01.decentraland.org"
+          "signalling": "https://signalling-01.telestoworld.org"
         },
         "policy": {
           "contentRating": "E",

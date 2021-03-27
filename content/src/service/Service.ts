@@ -7,7 +7,7 @@ import {
   ServerAddress,
   ServerStatus,
   Timestamp
-} from 'dcl-catalyst-commons'
+} from 'tcl-catalyst-commons'
 import { ContentFile } from '../controller/Controller'
 import { ContentItem } from '../storage/ContentStorage'
 import { Repository, RepositoryTask } from '../storage/Repository'

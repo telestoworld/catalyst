@@ -5,7 +5,7 @@ import {
   PartialDeploymentHistory,
   Pointer,
   ServerStatus
-} from 'dcl-catalyst-commons'
+} from 'tcl-catalyst-commons'
 import { ContentFile } from '../controller/Controller'
 import { ContentAuthenticator } from '../service/auth/Authenticator'
 import { Deployment, DeploymentOptions, PointerChangesFilters } from '../service/deployments/DeploymentManager'
@@ -42,7 +42,7 @@ export class DenylistServiceDecorator implements MetaverseContentService {
     private readonly service: MetaverseContentService,
     private readonly denylist: Denylist,
     private readonly repository: Repository
-  ) {}
+  ) { }
 
   start(): Promise<void> {
     return this.service.start()

@@ -1,8 +1,8 @@
 import { retry } from '@katalyst/content/helpers/RetryHelper'
-import { Fetcher, Pointer, Timestamp } from 'dcl-catalyst-commons'
-import { EthAddress } from 'dcl-crypto'
 import log4js from 'log4js'
 import ms from 'ms'
+import { Fetcher, Pointer, Timestamp } from 'tcl-catalyst-commons'
+import { EthAddress } from 'tcl-crypto'
 import { ContentAuthenticator } from '../auth/Authenticator'
 
 export class AccessCheckerForScenes {
@@ -11,9 +11,9 @@ export class AccessCheckerForScenes {
   constructor(
     private readonly authenticator: ContentAuthenticator,
     private readonly fetcher: Fetcher,
-    private readonly dclParcelAccessUrl: string,
+    private readonly tclParcelAccessUrl: string,
     private readonly LOGGER: log4js.Logger
-  ) {}
+  ) { }
 
   public async checkAccess(pointers: Pointer[], timestamp: Timestamp, ethAddress: EthAddress): Promise<string[]> {
     const errors: string[] = []
@@ -23,8 +23,8 @@ export class AccessCheckerForScenes {
         .map((pointer) => pointer.toLowerCase())
         .map(async (pointer) => {
           if (pointer.startsWith('default')) {
-            if (!this.authenticator.isAddressOwnedByDecentraland(ethAddress)) {
-              errors.push(`Only Decentraland can add or modify default scenes`)
+            if (!this.authenticator.isAddressOwnedBytelestoworld(ethAddress)) {
+              errors.push(`Only telestoworld can add or modify default scenes`)
             }
           } else {
             const pointerParts: string[] = pointer.split(',')
@@ -158,7 +158,7 @@ export class AccessCheckerForScenes {
     /**
      * You can use `owner`, `operator` and `updateOperator` to check the current value for that parcel.
      * Keep in mind that each association (owners, operators, etc) is capped to a thousand (1000) results.
-     * For more information, you can use the query explorer at https://thegraph.com/explorer/subgraph/decentraland/land-manager
+     * For more information, you can use the query explorer at https://thegraph.com/explorer/subgraph/telestoworld/land-manager
      */
 
     const query = `
@@ -206,7 +206,7 @@ export class AccessCheckerForScenes {
     }
 
     try {
-      return (await this.fetcher.queryGraph<{ parcels: Parcel[] }>(this.dclParcelAccessUrl, query, variables))
+      return (await this.fetcher.queryGraph<{ parcels: Parcel[] }>(this.tclParcelAccessUrl, query, variables))
         .parcels[0]
     } catch (error) {
       this.LOGGER.error(`Error fetching parcel (${x}, ${y})`, error)
@@ -218,7 +218,7 @@ export class AccessCheckerForScenes {
     /**
      * You can use `owner`, `operator` and `updateOperator` to check the current value for that estate.
      * Keep in mind that each association (owners, operators, etc) is capped to a thousand (1000) results.
-     * For more information, you can use the query explorer at https://thegraph.com/explorer/subgraph/decentraland/land-manager
+     * For more information, you can use the query explorer at https://thegraph.com/explorer/subgraph/telestoworld/land-manager
      */
 
     const query = `
@@ -258,7 +258,7 @@ export class AccessCheckerForScenes {
     }
 
     try {
-      return (await this.fetcher.queryGraph<{ estates: Estate[] }>(this.dclParcelAccessUrl, query, variables))
+      return (await this.fetcher.queryGraph<{ estates: Estate[] }>(this.tclParcelAccessUrl, query, variables))
         .estates[0]
     } catch (error) {
       this.LOGGER.error(`Error fetching estate (${estateId})`, error)
@@ -295,7 +295,7 @@ export class AccessCheckerForScenes {
 
     try {
       return (
-        await this.fetcher.queryGraph<{ authorizations: Authorization[] }>(this.dclParcelAccessUrl, query, variables)
+        await this.fetcher.queryGraph<{ authorizations: Authorization[] }>(this.tclParcelAccessUrl, query, variables)
       ).authorizations
     } catch (error) {
       this.LOGGER.error(`Error fetching authorizations for ${owner}`, error)

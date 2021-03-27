@@ -1,6 +1,6 @@
-import { Authenticator, AuthIdentity, IdentityType } from 'dcl-crypto'
 import React, { useCallback, useState } from 'react'
 import useSWR from 'swr'
+import { Authenticator, AuthIdentity, IdentityType } from 'tcl-crypto'
 import Web3 from 'web3'
 import { Account } from 'web3x/account'
 import { Address } from 'web3x/address'
@@ -25,13 +25,13 @@ export function saveToStorage(key: string, value: any): any {
 }
 
 function getEphemeralIdentity(): IdentityType {
-  const privateKey = window.localStorage.getItem('dcl-crypto-ephemeral')
+  const privateKey = window.localStorage.getItem('tcl-crypto-ephemeral')
   let account
   if (!privateKey) {
     const buffer = new Buffer(32)
     const result = window.crypto.getRandomValues(buffer)
     account = create(result)
-    window.localStorage.setItem('dcl-crypto-ephemeral', account.privateKey.toString('hex'))
+    window.localStorage.setItem('tcl-crypto-ephemeral', account.privateKey.toString('hex'))
   } else {
     account = fromPrivate(Buffer.from(privateKey, 'hex'))
   }
@@ -46,7 +46,7 @@ async function getSignatureChain(provider: any, ephemeral: IdentityType) {
   const eth = Eth.fromCurrentProvider()!
   const addresses = await eth.getAccounts()
   const address = addresses[0]
-  const chain = getFromStorage('dcl-crypto-chain-' + address)
+  const chain = getFromStorage('tcl-crypto-chain-' + address)
   if (!chain || new Date(chain.expiration).getTime() < new Date().getTime()) {
     const account = Account.create()
 
@@ -62,7 +62,7 @@ async function getSignatureChain(provider: any, ephemeral: IdentityType) {
     const identity = await Authenticator.initializeAuthChain(address.toString(), payload, expiration, (message) =>
       new Web3(provider).eth.personal.sign(message, address.toString(), '')
     )
-    saveToStorage('dcl-crypto-chain-' + address, identity)
+    saveToStorage('tcl-crypto-chain-' + address, identity)
     return identity
   } else {
     return chain

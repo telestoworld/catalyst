@@ -14,8 +14,8 @@ import {
 import { NoOpSnapshotManager } from '@katalyst/test-helpers/service/snapshots/NoOpGarbageCollectionManager'
 import { MockedSynchronizationManager } from '@katalyst/test-helpers/service/synchronization/MockedSynchronizationManager'
 import { MockedRepository } from '@katalyst/test-helpers/storage/MockedRepository'
-import { Entity as ControllerEntity, EntityType } from 'dcl-catalyst-commons'
 import fetch from 'node-fetch'
+import { Entity as ControllerEntity, EntityType } from 'tcl-catalyst-commons'
 
 describe('Integration - Server', function () {
   let server: Server

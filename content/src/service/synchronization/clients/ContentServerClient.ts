@@ -1,7 +1,7 @@
-import { ContentClient, DeploymentFields } from 'dcl-catalyst-client'
-import { ContentFileHash, DeploymentWithAuditInfo, Fetcher, ServerAddress, Timestamp } from 'dcl-catalyst-commons'
 import log4js from 'log4js'
 import { Readable } from 'stream'
+import { ContentClient, DeploymentFields } from 'tcl-catalyst-client'
+import { ContentFileHash, DeploymentWithAuditInfo, Fetcher, ServerAddress, Timestamp } from 'tcl-catalyst-commons'
 import { ContentFile } from '../../../controller/Controller'
 import { passThrough } from '../streaming/StreamHelper'
 
@@ -51,10 +51,10 @@ export class ContentServerClient {
     // Listen to all deployments passing through, and store the newest one's timestamps
     const passTrough = passThrough(
       (deployment: DeploymentWithAuditInfo) =>
-        (this.potentialLocalDeploymentTimestamp = Math.max(
-          this.potentialLocalDeploymentTimestamp ?? 0,
-          deployment.auditInfo.localTimestamp
-        ))
+      (this.potentialLocalDeploymentTimestamp = Math.max(
+        this.potentialLocalDeploymentTimestamp ?? 0,
+        deployment.auditInfo.localTimestamp
+      ))
     )
 
     // Wait for stream to end to update connection state

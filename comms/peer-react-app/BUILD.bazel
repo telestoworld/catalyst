@@ -24,7 +24,7 @@ ts_library(
         "//commons/utils",
         "@npm//@types/react",
         "@npm//@types/react-dom",
-        "@npm//decentraland-ui",
+        "@npm//telestoworld-ui",
         "@npm//react",
         "@npm//react-dom",
     ],
@@ -49,7 +49,7 @@ ts_devserver(
     deps = [
         "static/config.js",
         ":peer-react-app",
-        "@npm//decentraland-ui",
+        "@npm//telestoworld-ui",
         "@npm//fp-future:fp-future__umd",
         "@npm//protobufjs:protobufjs__umd",
         "@npm//react",

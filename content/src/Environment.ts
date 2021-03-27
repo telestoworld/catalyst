@@ -1,7 +1,7 @@
-import { EntityType, EntityVersion } from 'dcl-catalyst-commons'
-import { DECENTRALAND_ADDRESS } from 'decentraland-katalyst-commons/addresses'
 import log4js from 'log4js'
 import ms from 'ms'
+import { EntityType, EntityVersion } from 'tcl-catalyst-commons'
+import { telestoworld_ADDRESS } from 'telestoworld-katalyst-commons/addresses'
 import { ControllerFactory } from './controller/ControllerFactory'
 import { DenylistFactory } from './denylist/DenylistFactory'
 import { FetcherFactory } from './helpers/FetcherFactory'
@@ -30,13 +30,13 @@ export const CURRENT_CONTENT_VERSION: EntityVersion = EntityVersion.V3
 const DEFAULT_STORAGE_ROOT_FOLDER = 'storage'
 const DEFAULT_SERVER_PORT = 6969
 export const DEFAULT_ETH_NETWORK = 'ropsten'
-export const DEFAULT_DCL_PARCEL_ACCESS_URL_ROPSTEN =
-  'https://api.thegraph.com/subgraphs/name/decentraland/land-manager-ropsten'
-export const DEFAULT_DCL_PARCEL_ACCESS_URL_MAINNET = 'https://api.thegraph.com/subgraphs/name/decentraland/land-manager'
-export const DEFAULT_DCL_COLLECTIONS_ACCESS_URL_ROPSTEN =
-  'https://api.thegraph.com/subgraphs/name/decentraland/collections-ethereum-ropsten'
-export const DEFAULT_DCL_COLLECTIONS_ACCESS_URL_MAINNET =
-  'https://api.thegraph.com/subgraphs/name/decentraland/collections-ethereum-mainnet'
+export const DEFAULT_tcl_PARCEL_ACCESS_URL_ROPSTEN =
+  'https://api.thegraph.com/subgraphs/name/telestoworld/space-manager-ropsten'
+export const DEFAULT_tcl_PARCEL_ACCESS_URL_MAINNET = 'https://api.thegraph.com/subgraphs/name/telestoworld/space-manager'
+export const DEFAULT_tcl_COLLECTIONS_ACCESS_URL_ROPSTEN =
+  'https://api.thegraph.com/subgraphs/name/telestoworld/collections-ethereum-ropsten'
+export const DEFAULT_tcl_COLLECTIONS_ACCESS_URL_MAINNET =
+  'https://api.thegraph.com/subgraphs/name/telestoworld/collections-ethereum-mainnet'
 export const CURRENT_COMMIT_HASH = process.env.COMMIT_HASH ?? 'Unknown'
 export const CURRENT_CATALYST_VERSION = process.env.CATALYST_VERSION ?? 'Unknown'
 export const DEFAULT_DATABASE_CONFIG = {
@@ -128,15 +128,15 @@ export enum EnvironmentConfig {
   UPDATE_FROM_DAO_INTERVAL,
   SYNC_WITH_SERVERS_INTERVAL,
   ALLOW_LEGACY_ENTITIES,
-  DECENTRALAND_ADDRESS,
+  telestoworld_ADDRESS,
   ETH_NETWORK,
   LOG_LEVEL,
   FETCH_REQUEST_TIMEOUT,
   USE_COMPRESSION_MIDDLEWARE,
   BOOTSTRAP_FROM_SCRATCH,
   REQUEST_TTL_BACKWARDS,
-  DCL_PARCEL_ACCESS_URL,
-  DCL_COLLECTIONS_ACCESS_URL,
+  tcl_PARCEL_ACCESS_URL,
+  tcl_COLLECTIONS_ACCESS_URL,
   SQS_QUEUE_URL_REPORTING,
   SQS_ACCESS_KEY_ID,
   SQS_SECRET_ACCESS_KEY,
@@ -205,7 +205,7 @@ export class EnvironmentBuilder {
       EnvironmentConfig.SYNC_WITH_SERVERS_INTERVAL,
       () => process.env.SYNC_WITH_SERVERS_INTERVAL ?? ms('45s')
     )
-    this.registerConfigIfNotAlreadySet(env, EnvironmentConfig.DECENTRALAND_ADDRESS, () => DECENTRALAND_ADDRESS)
+    this.registerConfigIfNotAlreadySet(env, EnvironmentConfig.telestoworld_ADDRESS, () => telestoworld_ADDRESS)
     this.registerConfigIfNotAlreadySet(
       env,
       EnvironmentConfig.ALLOW_LEGACY_ENTITIES,
@@ -235,21 +235,21 @@ export class EnvironmentBuilder {
     this.registerConfigIfNotAlreadySet(env, EnvironmentConfig.REQUEST_TTL_BACKWARDS, () => ms('20m'))
     this.registerConfigIfNotAlreadySet(
       env,
-      EnvironmentConfig.DCL_PARCEL_ACCESS_URL,
+      EnvironmentConfig.tcl_PARCEL_ACCESS_URL,
       () =>
-        process.env.DCL_PARCEL_ACCESS_URL ??
+        process.env.tcl_PARCEL_ACCESS_URL ??
         (env.getConfig(EnvironmentConfig.ETH_NETWORK) === 'mainnet'
-          ? DEFAULT_DCL_PARCEL_ACCESS_URL_MAINNET
-          : DEFAULT_DCL_PARCEL_ACCESS_URL_ROPSTEN)
+          ? DEFAULT_tcl_PARCEL_ACCESS_URL_MAINNET
+          : DEFAULT_tcl_PARCEL_ACCESS_URL_ROPSTEN)
     )
     this.registerConfigIfNotAlreadySet(
       env,
-      EnvironmentConfig.DCL_COLLECTIONS_ACCESS_URL,
+      EnvironmentConfig.tcl_COLLECTIONS_ACCESS_URL,
       () =>
-        process.env.DCL_COLLECTIONS_ACCESS_URL ??
+        process.env.tcl_COLLECTIONS_ACCESS_URL ??
         (env.getConfig(EnvironmentConfig.ETH_NETWORK) === 'mainnet'
-          ? DEFAULT_DCL_COLLECTIONS_ACCESS_URL_MAINNET
-          : DEFAULT_DCL_COLLECTIONS_ACCESS_URL_ROPSTEN)
+          ? DEFAULT_tcl_COLLECTIONS_ACCESS_URL_MAINNET
+          : DEFAULT_tcl_COLLECTIONS_ACCESS_URL_ROPSTEN)
     )
     this.registerConfigIfNotAlreadySet(
       env,

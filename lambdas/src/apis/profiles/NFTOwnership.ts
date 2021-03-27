@@ -1,5 +1,5 @@
-import { EthAddress } from 'dcl-crypto'
 import LRU from 'lru-cache'
+import { EthAddress } from 'tcl-crypto'
 
 /**
  * This is a custom cache for storing the owner of a given NFT. It can be configured with a max size of elements

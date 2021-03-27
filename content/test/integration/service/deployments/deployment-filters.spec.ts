@@ -1,6 +1,6 @@
 import { DeploymentResult, isSuccessfulDeployment, MetaverseContentService } from '@katalyst/content/service/Service'
-import { AuditInfo, DeploymentFilters, EntityType, EntityVersion, Timestamp } from 'dcl-catalyst-commons'
-import { Authenticator } from 'dcl-crypto'
+import { AuditInfo, DeploymentFilters, EntityType, EntityVersion, Timestamp } from 'tcl-catalyst-commons'
+import { Authenticator } from 'tcl-crypto'
 import { loadStandaloneTestEnvironment } from '../../E2ETestEnvironment'
 import { buildDeployData, buildDeployDataAfterEntity, EntityCombo } from '../../E2ETestUtils'
 

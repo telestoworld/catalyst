@@ -1,4 +1,4 @@
-import { ensureDirectoryExists, existPath } from 'decentraland-katalyst-commons/fsutils'
+import { ensureDirectoryExists, existPath } from 'telestoworld-katalyst-commons/fsutils'
 import fs from 'fs'
 import path from 'path'
 import { ContentItem, ContentStorage, SimpleContentItem, StorageContent } from './ContentStorage'

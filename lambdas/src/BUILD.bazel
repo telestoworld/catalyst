@@ -11,7 +11,7 @@ ts_library(
         "//contracts",
         "//commons/utils",
         "//commons/servers",
-        "@npm//@dcl/schemas",
+        "@npm//@tcl/schemas",
         "@npm//@types",
         "@npm//@types/node",
         "@npm//@types/compression",
@@ -28,14 +28,14 @@ ts_library(
         "@npm//lru-cache",
         "@npm//node-fetch",
         "@npm//@types/node-fetch",
-        "@npm//decentraland-commons",
+        "@npm//telestoworld-commons",
         "@npm//web3",
         "@npm//fp-future",
         "@npm//@types/web3",
         "@npm//aws-sdk",
-        "@npm//dcl-crypto",
-        "@npm//dcl-catalyst-commons",
-        "@npm//dcl-catalyst-client",
-        "@npm//@dcl/urn-resolver"
+        "@npm//tcl-crypto",
+        "@npm//tcl-catalyst-commons",
+        "@npm//tcl-catalyst-client",
+        "@npm//@tcl/urn-resolver"
     ],
 )

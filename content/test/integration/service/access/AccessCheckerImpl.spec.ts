@@ -1,10 +1,10 @@
 import {
-  DEFAULT_DCL_COLLECTIONS_ACCESS_URL_ROPSTEN,
-  DEFAULT_DCL_PARCEL_ACCESS_URL_ROPSTEN
+  DEFAULT_tcl_COLLECTIONS_ACCESS_URL_ROPSTEN,
+  DEFAULT_tcl_PARCEL_ACCESS_URL_ROPSTEN
 } from '@katalyst/content/Environment'
 import { AccessCheckerImpl } from '@katalyst/content/service/access/AccessCheckerImpl'
 import { ContentAuthenticator } from '@katalyst/content/service/auth/Authenticator'
-import { EntityType, Fetcher } from 'dcl-catalyst-commons'
+import { EntityType, Fetcher } from 'tcl-catalyst-commons'
 
 describe('Integration - AccessCheckerImpl', function () {
   it(`When access URL is wrong while checking scene access it reports an error`, async () => {
@@ -25,7 +25,7 @@ describe('Integration - AccessCheckerImpl', function () {
     const accessChecker = new AccessCheckerImpl(
       new ContentAuthenticator(),
       new Fetcher(),
-      DEFAULT_DCL_PARCEL_ACCESS_URL_ROPSTEN,
+      DEFAULT_tcl_PARCEL_ACCESS_URL_ROPSTEN,
       'Unused URL'
     )
 
@@ -42,7 +42,7 @@ describe('Integration - AccessCheckerImpl', function () {
 
   it(`When access URL is wrong while checking wearable access it reports an error`, async () => {
     const accessChecker = new AccessCheckerImpl(new ContentAuthenticator(), new Fetcher(), 'Unused URL', 'Wrong URL')
-    const pointer = 'urn:decentraland:ethereum:collections-v2:0x1b8ba74cc34c2927aac0a8af9c3b1ba2e61352f2:0'
+    const pointer = 'urn:telestoworld:ethereum:collections-v2:0x1b8ba74cc34c2927aac0a8af9c3b1ba2e61352f2:0'
     const errors = await accessChecker.hasAccess(
       EntityType.WEARABLE,
       [pointer],
@@ -59,9 +59,9 @@ describe('Integration - AccessCheckerImpl', function () {
       new ContentAuthenticator(),
       new Fetcher(),
       'Unused URL',
-      DEFAULT_DCL_COLLECTIONS_ACCESS_URL_ROPSTEN
+      DEFAULT_tcl_COLLECTIONS_ACCESS_URL_ROPSTEN
     )
-    const pointer = 'urn:decentraland:ethereum:collections-v2:0x1b8ba74cc34c2927aac0a8af9c3b1ba2e61352f2:0'
+    const pointer = 'urn:telestoworld:ethereum:collections-v2:0x1b8ba74cc34c2927aac0a8af9c3b1ba2e61352f2:0'
 
     const errors = await accessChecker.hasAccess(
       EntityType.WEARABLE,

@@ -67,7 +67,7 @@ ts_library(
         "//contracts",
         "@npm//@types",
         "@npm//cors",
-        "@npm//dcl-crypto",
+        "@npm//tcl-crypto",
         "@npm//express",
         "@npm//fast-deep-equal",
         "@npm//fp-future",

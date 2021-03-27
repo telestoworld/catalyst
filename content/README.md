@@ -1,5 +1,5 @@
 # Content Server
-The content server currently stores many of the entities used in Decentraland. For example scenes, wearables and profiles. Content servers will automatically sync with each other, as long as they were all whitelisted by the DAO.
+The content server currently stores many of the entities used in telestoworld. For example scenes, wearables and profiles. Content servers will automatically sync with each other, as long as they were all whitelisted by the DAO.
 
 If you set up a local content server, it will receive all updates by those other whitelisted servers. However, new deployments that happen on your local server will not be sent to other servers.
 

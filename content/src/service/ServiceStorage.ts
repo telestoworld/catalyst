@@ -1,8 +1,8 @@
-import { ContentFileHash } from 'dcl-catalyst-commons'
+import { ContentFileHash } from 'tcl-catalyst-commons'
 import { ContentItem, ContentStorage, StorageContent } from '../storage/ContentStorage'
 
 export class ServiceStorage {
-  constructor(private storage: ContentStorage) {}
+  constructor(private storage: ContentStorage) { }
 
   storeContent(fileHash: ContentFileHash, content: StorageContent): Promise<void> {
     return this.storage.store(fileHash, content)

@@ -170,7 +170,7 @@ export async function getContents(fetcher: SmartContentServerFetcher, req: Reque
   } else {
     if (contentServerResponse.status === 404) {
       // Let's try on the old content server
-      const legacyContentServerResponse = await fetch(`https://content.decentraland.org/contents/${cid}`)
+      const legacyContentServerResponse = await fetch(`https://content.telestoworld.org/contents/${cid}`)
       if (legacyContentServerResponse.ok) {
         LOGGER.info(`Failed to find '${cid}' on the content server, but found it on the legacy one.`)
         copySuccessResponse(legacyContentServerResponse, res)

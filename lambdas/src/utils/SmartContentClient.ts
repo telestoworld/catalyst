@@ -1,10 +1,13 @@
+import future, { IFuture } from 'fp-future'
+import log4js from 'log4js'
+import { Readable } from 'stream'
 import {
   ContentAPI,
   ContentClient,
   DeploymentData,
   DeploymentOptions,
   DeploymentWithMetadataContentAndPointers
-} from 'dcl-catalyst-client'
+} from 'tcl-catalyst-client'
 import {
   AvailableContentResult,
   CompleteRequestOptions,
@@ -19,10 +22,7 @@ import {
   RequestOptions,
   ServerStatus,
   Timestamp
-} from 'dcl-catalyst-commons'
-import future, { IFuture } from 'fp-future'
-import log4js from 'log4js'
-import { Readable } from 'stream'
+} from 'tcl-catalyst-commons'
 /**
  * This content client  tries to use the internal docker network to connect lambdas with the content server.
  * If it can't, then it will try to contact it externally
@@ -34,7 +34,7 @@ export class SmartContentClient implements ContentAPI {
 
   private contentClient: IFuture<ContentAPI> | undefined
 
-  constructor(private readonly externalContentServerUrl: string) {}
+  constructor(private readonly externalContentServerUrl: string) { }
 
   async fetchEntitiesByPointers(type: EntityType, pointers: Pointer[], options?: RequestOptions): Promise<Entity[]> {
     const client = await this.getClient()

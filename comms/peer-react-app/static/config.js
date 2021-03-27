@@ -4,7 +4,7 @@ require.config({
     'react-dom': '/npm/node_modules/react-dom/umd/react-dom.development',
     peerjs: '/npm/node_modules/peerjs/dist/peerjs',
     //'react-router': '/npm/node_modules/react-router/umd/react-router',
-    'decentraland-ui': '/npm/node_modules/decentraland-ui/lib/index',
+    'telestoworld-ui': '/npm/node_modules/telestoworld-ui/lib/index',
     'fp-future': 'npm/node_modules/fp-future/index',
     'simple-peer': 'npm/node_modules/simple-peer/simplepeer.min',
     eventemitter3: 'npm/node_modules/eventemitter3/umd/eventemitter3',

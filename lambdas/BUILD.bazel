@@ -43,11 +43,11 @@ ts_library(
         "@npm//@types/faker",
         "@npm//node-fetch",
         "@npm//@types/node-fetch",
-        "@npm//dcl-catalyst-commons",
+        "@npm//tcl-catalyst-commons",
         "@npm//ts-mockito",
-        "@npm//dcl-crypto",
+        "@npm//tcl-crypto",
         "@npm//faker",
-        "@npm//@dcl/urn-resolver"
+        "@npm//@tcl/urn-resolver"
     ],
 )
 

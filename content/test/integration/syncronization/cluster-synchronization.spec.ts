@@ -1,5 +1,5 @@
-import { Timestamp } from 'dcl-catalyst-commons'
 import ms from 'ms'
+import { Timestamp } from 'tcl-catalyst-commons'
 import {
   assertDeploymentsAreReported,
   assertEntitiesAreActiveOnServer,

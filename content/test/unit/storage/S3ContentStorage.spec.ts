@@ -11,7 +11,7 @@ xdescribe('S3ContentStorage', () => {
 
   const accessKeyId: string = '***REMOVED***'
   const secretAccessKey: string = '***REMOVED***'
-  const bucket: string = 'marcosnc.decentraland.zone'
+  const bucket: string = 'marcosnc.telestoworld.zone'
 
   beforeAll(async () => {
     await deleteAllInsideBucket()

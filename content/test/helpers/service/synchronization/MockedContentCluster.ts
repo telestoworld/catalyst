@@ -7,20 +7,20 @@ export class MockedContentCluster {
   }
 
   static withoutIdentity(): ContentCluster {
-    const mockedCluster: ContentCluster = mock(ContentCluster)
-    when(mockedCluster.getIdentityInDAO()).thenReturn(undefined)
-    return instance(mockedCluster)
+    const mocketcluster: ContentCluster = mock(ContentCluster)
+    when(mocketcluster.getIdentityInDAO()).thenReturn(undefined)
+    return instance(mocketcluster)
   }
 
   static withAddress(ethAddress: string): ContentCluster {
-    const mockedCluster: ContentCluster = mock(ContentCluster)
-    when(mockedCluster.getIdentityInDAO()).thenReturn({ owner: ethAddress, address: '', id: '', name: '' })
-    return instance(mockedCluster)
+    const mocketcluster: ContentCluster = mock(ContentCluster)
+    when(mocketcluster.getIdentityInDAO()).thenReturn({ owner: ethAddress, address: '', id: '', name: '' })
+    return instance(mocketcluster)
   }
 
   static withName(name: string): ContentCluster {
-    const mockedCluster: ContentCluster = mock(ContentCluster)
-    when(mockedCluster.getIdentityInDAO()).thenReturn({ owner: '', address: '', id: '', name })
-    return instance(mockedCluster)
+    const mocketcluster: ContentCluster = mock(ContentCluster)
+    when(mocketcluster.getIdentityInDAO()).thenReturn({ owner: '', address: '', id: '', name })
+    return instance(mocketcluster)
   }
 }

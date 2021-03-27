@@ -3,10 +3,10 @@ import {
   mergeStreams,
   streamFilter
 } from '@katalyst/content/service/synchronization/streaming/StreamHelper'
-import { DeploymentWithAuditInfo, EntityId } from 'dcl-catalyst-commons'
 import log4js from 'log4js'
 import parallelTransform from 'parallel-transform'
 import { Readable, Writable } from 'stream'
+import { DeploymentWithAuditInfo, EntityId } from 'tcl-catalyst-commons'
 import { ContentServerClient } from '../clients/ContentServerClient'
 import { HistoryDeploymentOptions } from '../EventDeployer'
 import { OnlyNotDeployedFilter } from './OnlyNotDeployedFilter'
@@ -21,7 +21,7 @@ export class EventStreamProcessor {
   constructor(
     private readonly checkIfAlreadyDeployed: (entityIds: EntityId[]) => Promise<Map<EntityId, boolean>>,
     private readonly deploymentBuilder: DeploymentPreparation
-  ) {}
+  ) { }
 
   /**
    * This method takes many deployment streams and tries to deploy them locally.

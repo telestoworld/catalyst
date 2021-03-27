@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import React, { useState, useRef, useEffect } from 'react'
 import { IPeer } from '../../peer/src/types'
-import { Button, Radio } from 'decentraland-ui'
+import { Button, Radio } from 'telestoworld-ui'
 import { PeerMessageTypes } from '../../peer/src/messageTypes'
 import { mouse } from './Mouse'
 

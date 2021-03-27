@@ -17,8 +17,8 @@ import { MockedContentCluster } from '@katalyst/test-helpers/service/synchroniza
 import { NoOpValidations } from '@katalyst/test-helpers/service/validations/NoOpValidations'
 import { MockedRepository } from '@katalyst/test-helpers/storage/MockedRepository'
 import assert from 'assert'
-import { ContentFileHash, EntityType, EntityVersion, ENTITY_FILE_NAME, Hashing } from 'dcl-catalyst-commons'
-import { Authenticator } from 'dcl-crypto'
+import { ContentFileHash, EntityType, EntityVersion, ENTITY_FILE_NAME, Hashing } from 'tcl-catalyst-commons'
+import { Authenticator } from 'tcl-crypto'
 import { MockedStorage } from '../storage/MockedStorage'
 import { NoOpDeploymentManager } from './deployments/NoOpDeploymentManager'
 import { NoOpFailedDeploymentsManager } from './errors/NoOpFailedDeploymentsManager'
@@ -42,13 +42,13 @@ describe('Service', function () {
   beforeAll(async () => {
     randomFile = { name: 'file', content: Buffer.from('1234') }
     randomFileHash = await Hashing.calculateHash(randomFile)
-    ;[entity, entityFile] = await buildEntityAndFile(
-      EntityType.SCENE,
-      ['X1,Y1', 'X2,Y2'],
-      Date.now(),
-      new Map([[randomFile.name, randomFileHash]]),
-      'metadata'
-    )
+      ;[entity, entityFile] = await buildEntityAndFile(
+        EntityType.SCENE,
+        ['X1,Y1', 'X2,Y2'],
+        Date.now(),
+        new Map([[randomFile.name, randomFileHash]]),
+        'metadata'
+      )
   })
 
   beforeEach(async () => {
@@ -127,7 +127,7 @@ describe('Service', function () {
     await service.start()
     try {
       await service.deployEntity([randomFile], randomFileHash, auditInfo, '')
-    } catch {}
+    } catch { }
 
     const status = service.getStatus()
 

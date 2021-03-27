@@ -1,4 +1,4 @@
-import { ContentFileHash, EntityId, EntityType, Pointer } from 'dcl-catalyst-commons'
+import { ContentFileHash, EntityId, EntityType, Pointer } from 'tcl-catalyst-commons'
 import { ContentFile } from '../controller/Controller'
 import { Entity } from './Entity'
 

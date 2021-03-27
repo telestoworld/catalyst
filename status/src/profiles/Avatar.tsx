@@ -32,7 +32,7 @@ export function Avatar(props: {
             <a
               target="_blank"
               rel="noopener noreferrer"
-              href={`https://play.decentraland.org/?position=${props.position.join(',')}&realm=${props.serverName}-${
+              href={`https://play.telestoworld.org/?position=${props.position.join(',')}&realm=${props.serverName}-${
                 props.layer
               }`}
             >
@@ -70,7 +70,7 @@ export function Avatar(props: {
       <a
         target="_blank"
         rel="noopener noreferrer"
-        href={`https://play.decentraland.org/?position=${props.position.join(',')}&realm=${props.serverName}-${
+        href={`https://play.telestoworld.org/?position=${props.position.join(',')}&realm=${props.serverName}-${
           props.layer
         }`}
       >

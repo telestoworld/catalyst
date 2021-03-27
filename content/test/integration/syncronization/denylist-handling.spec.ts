@@ -1,7 +1,7 @@
 import { EnvironmentConfig } from '@katalyst/content/Environment'
-import { ContentFileHash, Timestamp } from 'dcl-catalyst-commons'
-import { delay } from 'decentraland-katalyst-utils/util'
 import ms from 'ms'
+import { ContentFileHash, Timestamp } from 'tcl-catalyst-commons'
+import { delay } from 'telestoworld-katalyst-utils/util'
 import {
   assertContentNotIsDenylisted,
   assertDeploymentsAreReported,
@@ -24,7 +24,7 @@ describe('End 2 end - Denylist handling', () => {
   beforeEach(async () => {
     ;[server1, server2, onboardingServer] = await testEnv
       .configServer(SYNC_INTERVAL)
-      .withConfig(EnvironmentConfig.DECENTRALAND_ADDRESS, identity.address)
+      .withConfig(EnvironmentConfig.telestoworld_ADDRESS, identity.address)
       .withConfig(EnvironmentConfig.DISABLE_DENYLIST, false)
       .andBuildMany(3)
   })

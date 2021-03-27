@@ -2,7 +2,7 @@
 // currently third part packages frmo npm are not available due to issue:
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { Center } from 'decentraland-ui'
+import { Center } from 'telestoworld-ui'
 import { ConnectForm } from './components/ConnectForm'
 import { Peer } from '../peer/src/Peer'
 import { IPeer } from '../peer/src/types'

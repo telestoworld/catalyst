@@ -1,6 +1,6 @@
-import { ContentFileHash, DeploymentWithAuditInfo, ENTITY_FILE_NAME } from 'dcl-catalyst-commons'
 import log4js from 'log4js'
 import { Readable } from 'stream'
+import { ContentFileHash, DeploymentWithAuditInfo, ENTITY_FILE_NAME } from 'tcl-catalyst-commons'
 import { ContentFile } from '../../controller/Controller'
 import { Entity } from '../Entity'
 import { EntityFactory } from '../EntityFactory'
@@ -92,22 +92,19 @@ export class EventDeployer {
     for (let i = 0; i < unknownFileHashes.length; i++) {
       const fileHash = unknownFileHashes[i]
       EventDeployer.LOGGER.trace(
-        `Going to download file ${i + 1}/${unknownFileHashes.length} for entity (${entity.type}, ${
-          entity.id
+        `Going to download file ${i + 1}/${unknownFileHashes.length} for entity (${entity.type}, ${entity.id
         }). Hash is ${fileHash}`
       )
       const file = await this.getFileOrUndefined(fileHash, source)
       if (file) {
         files.push(file)
         EventDeployer.LOGGER.trace(
-          `Downloaded file ${i + 1}/${unknownFileHashes.length} for entity (${entity.type}, ${
-            entity.id
+          `Downloaded file ${i + 1}/${unknownFileHashes.length} for entity (${entity.type}, ${entity.id
           }). Hash was ${fileHash}`
         )
       } else {
         EventDeployer.LOGGER.trace(
-          `Failed to download file ${i + 1}/${unknownFileHashes.length} for entity (${entity.type}, ${
-            entity.id
+          `Failed to download file ${i + 1}/${unknownFileHashes.length} for entity (${entity.type}, ${entity.id
           }). Hash was ${fileHash}. Will cancel content download`
         )
         return undefined
@@ -162,7 +159,7 @@ export class EventDeployer {
       entityType,
       entityId,
       localTimestamp,
-      'https://peer.decentraland.org/content',
+      'https://peer.telestoworld.org/content',
       reason,
       description
     )
